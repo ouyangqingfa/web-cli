@@ -1,0 +1,564 @@
+[{
+    "key": "1",
+    "name": "任务规划",
+    "events": [{
+        "key": "1_1_1",
+        "name": "威慑发布"
+    }, {
+        "key": "1_1_2",
+        "name": "团队组建"
+    }, {
+        "key": "1_1_3",
+        "name": "任务规划"
+    }],
+    "datas": [{
+        "key": "1_2_1",
+        "name": "官方网站新闻",
+        "link": {
+            "url": "http://121.201.2.191:8001/sintb/other.html#/focusNews/focusNews"
+        }
+    }, {
+        "key": "1_2_2",
+        "name": "官方社交宣传",
+        "link": {
+            "url": "http://121.201.2.191:8001/sintb/other.html#/target/twitter"
+        }
+    }, {
+        "key": "1_2_3",
+        "name": "高官言论",
+        "link": {
+            "url": "http://121.201.2.191:8001/sintb/other.html#/target/facebook"
+        }
+    }]
+}, {
+    "key": "2",
+    "name": "前期准备",
+    "events": [{
+        "key": "2_1_1",
+        "name": "保障人员先期抵达"
+    }, {
+        "key": "2_1_2",
+        "name": "加油机预置",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgw"
+            }
+        }
+    }, {
+        "key": "2_1_3",
+        "name": "禁飞区划分"
+    }],
+    "datas": [{
+        "key": "2_2_1",
+        "name": "高保区",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgw"
+            }
+        }
+    }, {
+        "key": "2_2_2",
+        "name": "禁飞区"
+    }, {
+        "key": "2_2_3",
+        "name": "加油机预置数据",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgw"
+            }
+        }
+    }, {
+        "key": "2_2_4",
+        "name": "作战或保障人员个人动态"
+    }, {
+        "key": "2_2_5",
+        "name": "知名军事博主"
+    }]
+}, {
+    "key": "3",
+    "name": "起飞前",
+    "events": [{
+        "key": "3_1_1",
+        "name": "武器挂载"
+    }, {
+        "key": "3_1_2",
+        "name": "滑行"
+    }, {
+        "key": "3_1_3",
+        "name": "批准推出开车"
+    }],
+    "datas": [{
+        "key": "3_2_1",
+        "name": "领航计划报",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgw"
+            }
+        }
+    }, {
+        "key": "3_2_2",
+        "name": "DB和CDB"
+    }, {
+        "key": "3_2_3",
+        "name": "ZSWX专线和DAMA"
+    }]
+}, {
+    "key": "4",
+    "name": "起飞",
+    "events": [{
+        "key": "4_1_1",
+        "name": "报告情况"
+    }, {
+        "key": "4_1_2",
+        "name": "切换通信"
+    }],
+    "datas": [{
+        "key": "4_2_1",
+        "name": "ADS_B",
+        "link": {
+            "url": "/adts"
+        }
+    }, {
+        "key": "4_2_2",
+        "name": "起飞报",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgw"
+            }
+        }
+    }, {
+        "key": "4_2_3",
+        "name": "CDB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "cdb"
+            }
+        }
+    }, {
+        "key": "4_2_4",
+        "name": "ZSWX专线和DAMA"
+    }]
+}, {
+    "key": "5",
+    "name": "航渡",
+    "events": [{
+        "key": "5_1_1",
+        "name": "报告情况"
+    }],
+    "datas": [{
+        "key": "5_2_1",
+        "name": "DB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "db"
+            }
+        }
+    }, {
+        "key": "5_2_2",
+        "name": "CDB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "cdb"
+            }
+        }
+    }, {
+        "key": "5_2_3",
+        "name": "预计飞越报",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgwx"
+            }
+        }
+    }, {
+        "key": "5_2_4",
+        "name": "电子定位",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "xdxt"
+            }
+        }
+    }, {
+        "key": "5_2_5",
+        "name": "ADS_B",
+        "link": {
+            "url": "/adts"
+        }
+    }, {
+        "key": "5_2_6",
+        "name": "ZSWX专线和DAMA"
+    }]
+}, {
+    "key": "6",
+    "name": "加油",
+    "events": [{
+        "key": "6_1_1",
+        "name": "报告情况"
+    }, {
+        "key": "6_1_2",
+        "name": "协调加油"
+    }],
+    "datas": [{
+        "key": "6_2_1",
+        "name": "CDB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "cdb"
+            }
+        }
+    }, {
+        "key": "6_2_2",
+        "name": "DB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "db"
+            }
+        }
+    }, {
+        "key": "6_2_3",
+        "name": "WX数据"
+    }, {
+        "key": "6_2_4",
+        "name": "电子定位",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "xdxt"
+            }
+        }
+    }, {
+        "key": "6_2_5",
+        "name": "ADS_B",
+        "link": {
+            "url": "/adts"
+        }
+    }, {
+        "key": "6_2_6",
+        "name": "ZSWX专线和DAMA"
+    }]
+}, {
+    "key": "7",
+    "name": "航渡",
+    "events": [{
+        "key": "7_1_1",
+        "name": "报告情况"
+    }],
+    "datas": [{
+        "key": "7_2_1",
+        "name": "DB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "db"
+            }
+        }
+    }, {
+        "key": "7_2_2",
+        "name": "CDB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "cdb"
+            }
+        }
+    }, {
+        "key": "7_2_3",
+        "name": "预计飞越报",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgwx"
+            }
+        }
+    }, {
+        "key": "7_2_4",
+        "name": "电子定位",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "xdxt"
+            }
+        }
+    }, {
+        "key": "7_2_5",
+        "name": "ADS_B",
+        "link": {
+            "url": "/adts"
+        }
+    }, {
+        "key": "7_2_6",
+        "name": "ZSWX专线和DAMA"
+    }]
+}, {
+    "key": "8",
+    "name": "战术机动",
+    "events": [{
+        "key": "8_1_1",
+        "name": "战术任务"
+    }],
+    "datas": [{
+        "key": "8_2_1",
+        "name": "CDB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "cdb"
+            }
+        }
+    }, {
+        "key": "8_2_2",
+        "name": "电子定位",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "xdxt"
+            }
+        }
+    }, {
+        "key": "8_2_3",
+        "name": "ADS_B",
+        "link": {
+            "url": "/adts"
+        }
+    }, {
+        "key": "8_2_4",
+        "name": "ZSWX专线和DAMA"
+    }, {
+        "key": "8_2_5",
+        "name": "SJLINK16SJL"
+    }]
+}, {
+    "key": "9",
+    "name": "航渡",
+    "events": [{
+        "key": "9_1_1",
+        "name": "报告情况"
+    }],
+    "datas": [{
+        "key": "9_2_1",
+        "name": "DB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "db"
+            }
+        }
+    }, {
+        "key": "9_2_2",
+        "name": "CDB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "cdb"
+            }
+        }
+    }, {
+        "key": "9_2_3",
+        "name": "预计飞越报",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgwx"
+            }
+        }
+    }, {
+        "key": "9_2_4",
+        "name": "电子定位",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "xdxt"
+            }
+        }
+    }, {
+        "key": "9_2_5",
+        "name": "ADS_B",
+        "link": {
+            "url": "/adts"
+        }
+    }, {
+        "key": "9_2_6",
+        "name": "ZSWX专线和DAMA"
+    }]
+}, {
+    "key": "10",
+    "name": "加油",
+    "events": [{
+        "key": "10_1_1",
+        "name": "报告情况"
+    }, {
+        "key": "10_1_2",
+        "name": "协调加油"
+    }],
+    "datas": [{
+        "key": "10_2_1",
+        "name": "CDB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "cdb"
+            }
+        }
+    }, {
+        "key": "10_2_2",
+        "name": "DB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "db"
+            }
+        }
+    }, {
+        "key": "10_2_3",
+        "name": "WX数据"
+    }, {
+        "key": "10_2_4",
+        "name": "电子定位",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "xdxt"
+            }
+        }
+    }, {
+        "key": "10_2_5",
+        "name": "ADS_B",
+        "link": {
+            "url": "/adts"
+        }
+    }, {
+        "key": "10_2_6",
+        "name": "ZSWX专线和DAMA"
+    }]
+}, {
+    "key": "11",
+    "name": "航渡",
+    "events": [{
+        "key": "11_1_1",
+        "name": "报告情况"
+    }],
+    "datas": [{
+        "key": "11_2_1",
+        "name": "DB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "db"
+            }
+        }
+    }, {
+        "key": "11_2_2",
+        "name": "CDB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "cdb"
+            }
+        }
+    }, {
+        "key": "11_2_3",
+        "name": "预计飞越报",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgwx"
+            }
+        }
+    }, {
+        "key": "11_2_4",
+        "name": "电子定位",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "xdxt"
+            }
+        }
+    }, {
+        "key": "11_2_5",
+        "name": "ADS_B",
+        "link": {
+            "url": "/adts"
+        }
+    }, {
+        "key": "11_2_6",
+        "name": "ZSWX专线和DAMA"
+    }]
+}, {
+    "key": "12",
+    "name": "降落",
+    "events": [{
+        "key": "12_1_1",
+        "name": "放起落架"
+    }],
+    "datas": [{
+        "key": "12_2_1",
+        "name": "落地报",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "hgwx"
+            }
+        }
+    }, {
+        "key": "12_2_2",
+        "name": "CDB",
+        "link": {
+            "url": "/adzs/outer",
+            "params": {
+                "key": "cdb"
+            }
+        }
+    }, {
+        "key": "12_2_3",
+        "name": "ZSWX专线和DAMA"
+    }, {
+        "key": "12_2_4",
+        "name": "SJLINK16SJL"
+    }]
+}, {
+    "key": "13",
+    "name": "任务总结",
+    "events": [{
+        "key": "13_1_1",
+        "name": "情况总结"
+    }, {
+        "key": "13_1_2",
+        "name": "新闻发布",
+        "link": {
+            "url": "http://121.201.2.191:8001/sintb/other.html#/focusNews/focusNews"
+        }
+    }, {
+        "key": "13_1_3",
+        "name": "人员归位"
+    }],
+    "datas": [{
+        "key": "13_2_1",
+        "name": "官方社交宣传"
+    }, {
+        "key": "13_2_2",
+        "name": "官方网站新闻",
+        "link": {
+            "url": "http://121.201.2.191:8001/sintb/other.html#/focusNews/focusNews"
+        }
+    }, {
+        "key": "13_2_3",
+        "name": "高官言论"
+    }, {
+        "key": "13_2_4",
+        "name": "作战或保障人员个人动态"
+    }, {
+        "key": "13_2_5",
+        "name": "知名军事博主动态"
+    }]
+}]

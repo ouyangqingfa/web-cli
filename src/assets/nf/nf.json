@@ -1,0 +1,1130 @@
+{
+    "Dominican_Republic": {
+        "x": 192,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Benin": {
+        "x": 408,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Angola": {
+        "x": 72,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Cambodia": {
+        "x": 192,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Costa_Rica": {
+        "x": 456,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Sudan": {
+        "x": 0,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "El_Salvador": {
+        "x": 264,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Kazakhstan": {
+        "x": 96,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Paraguay": {
+        "x": 264,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Portugal": {
+        "x": 360,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Syria": {
+        "x": 120,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Bahamas": {
+        "x": 240,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Grenada": {
+        "x": 120,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Greece": {
+        "x": 96,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Latvia": {
+        "x": 240,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Mongolia": {
+        "x": 264,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Iran": {
+        "x": 384,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Morocco": {
+        "x": 312,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Mali": {
+        "x": 48,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Panama": {
+        "x": 216,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Sierra_Leone": {
+        "x": 240,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Guatemala": {
+        "x": 144,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Guyana": {
+        "x": 216,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Equatorial_Guinea": {
+        "x": 288,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Iraq": {
+        "x": 408,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Central_African_Republic": {
+        "x": 288,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Chile": {
+        "x": 336,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Laos": {
+        "x": 216,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Nepal": {
+        "x": 432,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Argentina": {
+        "x": 120,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Seychelles": {
+        "x": 216,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Tanzania": {
+        "x": 168,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Ukraine": {
+        "x": 408,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Belize": {
+        "x": 384,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Burkina_Faso": {
+        "x": 144,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Ghana": {
+        "x": 72,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Zambia": {
+        "x": 144,
+        "width": 20,
+        "y": 144,
+        "height": 12
+    },
+    "Bahrain": {
+        "x": 264,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "India": {
+        "x": 336,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Canada": {
+        "x": 240,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Maldives": {
+        "x": 24,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Turkey": {
+        "x": 312,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Belgium": {
+        "x": 360,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Namibia": {
+        "x": 384,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Comoros": {
+        "x": 408,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Finland": {
+        "x": 408,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "UAE": {
+        "x": 360,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Georgia": {
+        "x": 24,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Jamaica": {
+        "x": 24,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Peru": {
+        "x": 288,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Turkmenistan": {
+        "x": 336,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Germany": {
+        "x": 48,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "South_Korea": {
+        "x": 408,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Yemen": {
+        "x": 120,
+        "width": 20,
+        "y": 144,
+        "height": 12
+    },
+    "Eritrea": {
+        "x": 312,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Fiji": {
+        "x": 384,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Guinea": {
+        "x": 168,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Chad": {
+        "x": 312,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Somalia": {
+        "x": 360,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Madagascar": {
+        "x": 432,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Saint_Vincent_and_the_Grenadines": {
+        "x": 48,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Republic_of_the_Congo": {
+        "x": 408,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Thailand": {
+        "x": 192,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Kiribati": {
+        "x": 144,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Libya": {
+        "x": 336,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Soloman_Islands": {
+        "x": 336,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Bosnia": {
+        "x": 24,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Sweden": {
+        "x": 72,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Vietnam": {
+        "x": 96,
+        "width": 20,
+        "y": 144,
+        "height": 12
+    },
+    "Malawi": {
+        "x": 456,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Poland": {
+        "x": 336,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Czech_Republic": {
+        "x": 96,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Bulgaria": {
+        "x": 120,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Jordan": {
+        "x": 72,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Kuwait": {
+        "x": 168,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Nigeria": {
+        "x": 72,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Tunisia": {
+        "x": 288,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Croatia": {
+        "x": 24,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "United_States_of_America": {
+        "x": 456,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Uruguay": {
+        "x": 0,
+        "width": 20,
+        "y": 144,
+        "height": 12
+    },
+    "Guinea_Bissau": {
+        "x": 192,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Saudi_Arabia": {
+        "x": 144,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Cote_d_Ivoire": {
+        "x": 0,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Kenya": {
+        "x": 120,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Switzerland": {
+        "x": 96,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Samoa": {
+        "x": 72,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Spain": {
+        "x": 432,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Brunei": {
+        "x": 96,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Djibouti": {
+        "x": 168,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Lebanon": {
+        "x": 264,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Azerbaijan": {
+        "x": 216,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Cuba": {
+        "x": 48,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Liberia": {
+        "x": 312,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Venezuela": {
+        "x": 72,
+        "width": 20,
+        "y": 144,
+        "height": 12
+    },
+    "Mauritania": {
+        "x": 120,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Swaziland": {
+        "x": 48,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "New_Zealand": {
+        "x": 0,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Palau": {
+        "x": 192,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Israel": {
+        "x": 456,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Australia": {
+        "x": 168,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Tajikistan": {
+        "x": 144,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Cape_Verde": {
+        "x": 264,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Estonia": {
+        "x": 336,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Antigua_and_Barbuda": {
+        "x": 96,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Myanmar": {
+        "x": 360,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Cameroon": {
+        "x": 216,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Cyprus": {
+        "x": 72,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Sri_Lanka": {
+        "x": 456,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Malaysia": {
+        "x": 0,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Iceland": {
+        "x": 312,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Oman": {
+        "x": 144,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Armenia": {
+        "x": 144,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Gabon": {
+        "x": 456,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "South_Africa": {
+        "x": 384,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Austria": {
+        "x": 192,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Mozambique": {
+        "x": 336,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Monaco": {
+        "x": 240,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Russian_Federation": {
+        "x": 456,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Luxembourg": {
+        "x": 384,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Brazil": {
+        "x": 72,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Algeria": {
+        "x": 48,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Slovenia": {
+        "x": 312,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Lesotho": {
+        "x": 288,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Tonga": {
+        "x": 240,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Colombia": {
+        "x": 384,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Ecuador": {
+        "x": 216,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Hungary": {
+        "x": 288,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Japan": {
+        "x": 48,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Cook_Islands": {
+        "x": 432,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Moldova": {
+        "x": 216,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "San_Marino": {
+        "x": 96,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Belarus": {
+        "x": 336,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Trinidad_and_Tobago": {
+        "x": 264,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Mauritius": {
+        "x": 144,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Marshall_Islands": {
+        "x": 96,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Albania": {
+        "x": 24,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "North_Korea": {
+        "x": 96,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Vanuatu": {
+        "x": 48,
+        "width": 20,
+        "y": 144,
+        "height": 12
+    },
+    "Papua_New_Guinea": {
+        "x": 240,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Sao_Tome_and_Principe": {
+        "x": 120,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Senegal": {
+        "x": 168,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Honduras": {
+        "x": 264,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Italy": {
+        "x": 0,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Macedonia": {
+        "x": 408,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Nauru": {
+        "x": 408,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Ethiopia": {
+        "x": 360,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "United_Kingdom": {
+        "x": 432,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Haiti": {
+        "x": 240,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Afghanistan": {
+        "x": 0,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Burundi": {
+        "x": 168,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "blank": {
+        "x": 456,
+        "width": 20,
+        "y": 0,
+        "height": 13
+    },
+    "Singapore": {
+        "x": 264,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Egypt": {
+        "x": 240,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Bolivia": {
+        "x": 0,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Malta": {
+        "x": 72,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Netherlands": {
+        "x": 456,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Pakistan": {
+        "x": 168,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Gambia": {
+        "x": 0,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Saint_Lucia": {
+        "x": 24,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "China": {
+        "x": 360,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Ireland": {
+        "x": 432,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    },
+    "Qatar": {
+        "x": 384,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Slovakia": {
+        "x": 288,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "France": {
+        "x": 432,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Lithuania": {
+        "x": 360,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Serbia": {
+        "x": 192,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Democratic_Republic_of_the_Congo": {
+        "x": 120,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Kyrgyzstan": {
+        "x": 192,
+        "width": 20,
+        "y": 64,
+        "height": 12
+    },
+    "Bhutan": {
+        "x": 432,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Romania": {
+        "x": 432,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Togo": {
+        "x": 216,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Niger": {
+        "x": 48,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Philippines": {
+        "x": 312,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Rwanda": {
+        "x": 0,
+        "width": 20,
+        "y": 112,
+        "height": 12
+    },
+    "Uzbekistan": {
+        "x": 24,
+        "width": 20,
+        "y": 144,
+        "height": 12
+    },
+    "Bangladesh": {
+        "x": 288,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Barbados": {
+        "x": 312,
+        "width": 20,
+        "y": 0,
+        "height": 12
+    },
+    "Nicaragua": {
+        "x": 24,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Norway": {
+        "x": 120,
+        "width": 20,
+        "y": 96,
+        "height": 12
+    },
+    "Botswana": {
+        "x": 48,
+        "width": 20,
+        "y": 16,
+        "height": 12
+    },
+    "Denmark": {
+        "x": 144,
+        "width": 20,
+        "y": 32,
+        "height": 12
+    },
+    "Mexico": {
+        "x": 168,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Uganda": {
+        "x": 384,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Zimbabwe": {
+        "x": 168,
+        "width": 20,
+        "y": 144,
+        "height": 12
+    },
+    "Micronesia": {
+        "x": 192,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Suriname": {
+        "x": 24,
+        "width": 20,
+        "y": 128,
+        "height": 12
+    },
+    "Montenegro": {
+        "x": 288,
+        "width": 20,
+        "y": 80,
+        "height": 12
+    },
+    "Indonesia": {
+        "x": 360,
+        "width": 20,
+        "y": 48,
+        "height": 12
+    }
+}
