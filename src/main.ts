@@ -1,11 +1,15 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router/index";
+import router, { setupRouter } from "./router/index";
 
-import "@/utils/extenstions/index";
+// import { setupStore } from "./store";
+import { setupAntd, setupExtMethods } from "./plugins";
 
-//Antd
-import "ant-design-vue/dist/antd.css";
-import Antd from "ant-design-vue";
+const app = createApp(App);
 
-createApp(App).use(Antd).use(router).mount("#app");
+setupExtMethods();
+setupAntd(app);
+// setupStore(app);
+setupRouter(app);
+
+router.isReady().then(() => app.mount("#app"));

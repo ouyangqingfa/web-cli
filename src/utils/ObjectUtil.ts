@@ -1,15 +1,11 @@
-//https://www.lodashjs.com/
-//使用 lodash来操作一些类型及对象
-// import { cloneDeep } from 'lodash'
 /**
- * 
+ *
  */
 class ObjectUtil {
-
     /**
      * 类型属性混合
-     * @param first 
-     * @param second 
+     * @param first
+     * @param second
      */
     public extend<T, U>(first: T, second: U): T & U {
         let result: Partial<T & U> = {};
@@ -26,22 +22,22 @@ class ObjectUtil {
         return result as T & U;
     }
 
-    // /**
-    //  * 深拷贝
-    //  * @param obj 
-    //  */
-    // public deepClone<T>(obj: T): T {
-    //     return cloneDeep(obj);
-    // }
+    /**
+     * 深拷贝
+     * @param obj
+     */
+    public deepClone<T>(obj: T): T {
+        return JSON.parse(JSON.stringify(obj));
+    }
 
-    public static keyMapping<T, K extends keyof T>(arr: Array<T>, propkey: K): { [key: string]: T } {
+    public keyMapping<T, K extends keyof T>(arr: Array<T>, propkey: K): { [key: string]: T } {
         let result: { [key: string]: T } = {};
         arr.forEach(item => {
             let keyVal = item[propkey];
-            if (typeof keyVal == 'string') {
+            if (typeof keyVal == "string") {
                 result[keyVal] = item;
             }
-        })
+        });
         return result;
         // return arr.reduce((a: { [key: string]: T }, el, i) => {
         //     let keyVal = el[propkey];
@@ -50,5 +46,8 @@ class ObjectUtil {
         // }, {})
     }
 
+    public isFunction(obj: any): boolean {
+        return obj && typeof obj === "function";
+    }
 }
-export default ObjectUtil
+export default ObjectUtil;

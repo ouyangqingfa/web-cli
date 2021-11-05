@@ -1,4 +1,6 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import { App } from "vue";
+import { createRouter, createWebHashHistory, RouteRecordRaw, createWebHistory } from "vue-router";
+import { createRouterGuards } from "./RouterGuards";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -17,21 +19,25 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/system/error/500.vue"),
     },
     {
-        path: "/system/login",
+        path: "/login",
         name: "login",
         component: () => import("@/views/system/login/Login.vue"),
     },
     {
         path: "/",
         name: "DefaultLayout",
-        redirect: "/system/login",
         component: () => import("@/layouts/default/DefaultLayout.vue"),
     },
 ];
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHashHistory(""),
     routes,
 });
+
+export function setupRouter(app: App<Element>) {
+    app.use(router);
+    createRouterGuards(router);
+}
 
 export default router;

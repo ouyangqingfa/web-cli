@@ -1,5 +1,5 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { message } from 'ant-design-vue';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { message } from "ant-design-vue";
 
 export class Request {
     public static axiosInstance: AxiosInstance;
@@ -10,31 +10,40 @@ export class Request {
 
     public static request<T = any>(config: AxiosRequestConfig): Promise<T> {
         return new Promise((resolve, reject) => {
-            this.axiosInstance.request<T, AxiosResponse<T>>(config).then(res => {
-                Request.handleResult(res, resolve);
-            }).catch(e => {
-                reject(e);
-            });
+            this.axiosInstance
+                .request<T, AxiosResponse<T>>(config)
+                .then(res => {
+                    Request.handleResult(res, resolve);
+                })
+                .catch(e => {
+                    reject(e);
+                });
         });
     }
 
     public static get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
         return new Promise((resolve, reject) => {
-            this.axiosInstance.get<T, AxiosResponse<T>>(url, config).then(res => {
-                Request.handleResult(res, resolve);
-            }).catch(e => {
-                reject(e);
-            });
+            this.axiosInstance
+                .get<T, AxiosResponse<T>>(url, config)
+                .then(res => {
+                    Request.handleResult(res, resolve);
+                })
+                .catch(e => {
+                    reject(e);
+                });
         });
     }
 
     public static post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
         return new Promise((resolve, reject) => {
-            this.axiosInstance.post<T, AxiosResponse<T>>(url, data, config).then(res => {
-                Request.handleResult(res, resolve);
-            }).catch(e => {
-                reject(e);
-            });
+            this.axiosInstance
+                .post<T, AxiosResponse<T>>(url, data, config)
+                .then(res => {
+                    Request.handleResult(res, resolve);
+                })
+                .catch(e => {
+                    reject(e);
+                });
         });
     }
 
@@ -48,8 +57,8 @@ export class Request {
     public static init() {
         // 创建axios实例
         this.axiosInstance = axios.create({
-            baseURL: '',
-            timeout: 30000
+            baseURL: "",
+            timeout: 30000,
         });
         // 初始化拦截器
         this.initInterceptors();
@@ -61,19 +70,16 @@ export class Request {
     //     return this.axiosInstance;
     // }
 
-
-
     // 初始化拦截器
     public static initInterceptors() {
         // 设置post请求头
-        this.axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        this.axiosInstance.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
         /**
          * 请求拦截器
          * 每次请求前，如果存在token则在请求头中携带token
          */
         this.axiosInstance.interceptors.request.use(
             (config: AxiosRequestConfig) => {
-
                 // const token = Vue.ls.get(ACCESS_TOKEN)
                 // if (token) {
                 //     config.headers['Authorization'] = 'Bearer ' + token
@@ -95,9 +101,8 @@ export class Request {
             (error: any) => {
                 console.log(error);
                 return -999;
-            },
+            }
         );
-
 
         // 响应拦截器
         this.axiosInstance.interceptors.response.use(
@@ -133,12 +138,12 @@ export class Request {
                     // eg:请求超时或断网时，更新state的network状态
                     // network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
                     // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
-                    message.warn('网络连接异常,请稍后再试!');
+                    message.warn("网络连接异常,请稍后再试!");
                     return -400;
                 }
-            });
+            }
+        );
     }
-
 
     /**
      * http握手错误
@@ -152,12 +157,10 @@ export class Request {
             case 403:
                 break;
             case 404:
-                message.warn('请求的资源不存在');
+                message.warn("请求的资源不存在");
                 break;
             default:
-                message.warn('连接错误');
+                message.warn("连接错误");
         }
     }
-
-
 }

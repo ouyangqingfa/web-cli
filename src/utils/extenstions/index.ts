@@ -1,5 +1,4 @@
-import './ArrayExtension';
-import './ObjectExtension';
-import './StringExtension';
+import "./ArrayExtension";
+import "./StringExtension";
 
-export { }
+export {};
