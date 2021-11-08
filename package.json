@@ -15,12 +15,14 @@
     "echarts": "^5.2.2",
     "lodash": "^4.17.21",
     "mapbox-gl": "1.13.2",
+    "nprogress": "^0.2.0",
     "qs": "^6.10.1",
     "vue": "^3.2.16",
     "vue-router": "4"
   },
   "devDependencies": {
     "@types/mapbox-gl": "1.13.2",
+    "@types/nprogress": "^0.2.0",
     "@types/qs": "^6.9.7",
     "@vitejs/plugin-vue": "^1.9.4",
     "@vue/compiler-sfc": "^3.2.20",

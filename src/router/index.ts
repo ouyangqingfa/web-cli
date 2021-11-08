@@ -2,36 +2,40 @@ import { App } from "vue";
 import { createRouter, createWebHashHistory, RouteRecordRaw, createWebHistory } from "vue-router";
 import { createRouterGuards } from "./RouterGuards";
 
-const routes: Array<RouteRecordRaw> = [
+export const routes: Array<RouteRecordRaw> = [
     {
         path: "/error/403",
         name: "403",
+        meta: { static: true },
         component: () => import("@/views/system/error/403.vue"),
     },
     {
         path: "/error/404",
         name: "404",
+        meta: { static: true },
         component: () => import("@/views/system/error/404.vue"),
     },
     {
         path: "/error/500",
         name: "500",
+        meta: { static: true },
         component: () => import("@/views/system/error/500.vue"),
     },
     {
         path: "/login",
         name: "login",
+        meta: { static: true },
         component: () => import("@/views/system/login/Login.vue"),
     },
     {
         path: "/",
-        name: "DefaultLayout",
+        name: "layout",
         component: () => import("@/layouts/default/DefaultLayout.vue"),
     },
 ];
 
 const router = createRouter({
-    history: createWebHashHistory(""),
+    history: createWebHistory(),
     routes,
 });
 

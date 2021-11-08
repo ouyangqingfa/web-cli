@@ -1,5 +1,4 @@
-import { App, reactive } from "vue";
-import { UserStore } from "./modules/User";
+import { reactive } from "vue";
 
 export class Store {
     private _modules = new Map<string, any>();
@@ -13,19 +12,24 @@ export class Store {
     }
 }
 
-// //自动导包
-// const allModules = import.meta.globEager("./modules/*.ts");
 const store = new Store();
-// Object.keys(allModules).forEach(path => {
-//     // const fileName = path.split("/")[1];
-//     // modules[fileName] = allModules[path][fileName] || allModules[path].default || allModules[path];
-//     debugger;
-// });
 
-// export function setupStore(app: App) {
-// app.use(store);
-// }
-
-store.setupModule(UserStore.SKEY, new UserStore());
+export function setupStore() {
+    const allModules = import.meta.globEager("./modules/*.ts");
+    Object.keys(allModules).forEach(path => {
+        const fileName = path.split("/")[2];
+        let module = allModules[path][fileName] || allModules[path].default || allModules[path];
+        if (module) {
+            let key = module.SKEY || fileName;
+            if (key) {
+                store.setupModule(key, new module());
+            } else {
+                console.error("setup store not has key");
+            }
+        } else {
+            console.error("setup store has not default export");
+        }
+    });
+}
 
 export default store;

@@ -1,6 +1,10 @@
 <template>
     <a-config-provider :locale="zhCN">
-        <router-view></router-view>
+        <router-view v-slot="{ Component }">
+            <transition name="fade">
+                <component :is="Component" />
+            </transition>
+        </router-view>
     </a-config-provider>
 </template>
 

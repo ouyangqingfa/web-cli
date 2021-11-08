@@ -2,46 +2,48 @@
     <div class="login-box">
         <div class="login-logo">
             <!--      <svg-icon name="logo" />-->
-            <img src="@/assets/login-box-bg.svg" alt="" />
+            <img src="@/assets/login-box-bg.svg" />
             <h1>APP NAME</h1>
         </div>
         <a-form layout="horizontal">
             <a-form-item>
                 <a-input size="large" placeholder="用户名">
-                    <template #prefix><UserOutlined type="user" /></template>
+                    <template #prefix>
+                        <UserOutlined type="user" />
+                    </template>
                 </a-input>
             </a-form-item>
             <a-form-item>
                 <a-input size="large" type="password" autocomplete="off" placeholder="密码">
-                    <template #prefix><LockOutlined type="user" /></template>
+                    <template #prefix>
+                        <LockOutlined type="user" />
+                    </template>
                 </a-input>
             </a-form-item>
             <a-form-item>
-                <a-button type="primary" html-type="submit" size="large" block @click="loginClick"> 登录 </a-button>
+                <a-button type="primary" html-type="submit" size="large" block @click="loginClick">登录</a-button>
             </a-form-item>
         </a-form>
-        <div>aaaa:{{ userStore.token }}</div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref } from "vue";
 import store from "@/store";
 import { UserStore } from "@/store/modules/User";
-import { useRouter } from "vue-router";
+import router from "@/router";
 
 const userStore = store.get<UserStore>(UserStore.SKEY);
-let a = 1;
-const timer = setInterval(() => {
-    userStore.token = "token_" + a;
-    a++;
-}, 1000);
-onUnmounted(() => {
-    clearInterval(timer);
-});
-const router = useRouter();
-function loginClick() {
+
+async function loginClick() {
+    userStore.id = "ajsgdbjasbhdc";
+    userStore.name = "UNAME";
+    userStore.password = "pwd_";
+    userStore.role = "admin";
+    userStore.token = "appToken";
+
+    userStore.login();
     router.push("/");
 }
 </script>

@@ -56,6 +56,10 @@ export const createStorage = ({ prefixKey = "", storage = localStorage } = {}) =
             return def;
         }
 
+        getStorage<T>(key: string) {
+            return this.get(key) as T;
+        }
+
         /**
          * 从缓存删除某项
          * @param {string} key
@@ -123,6 +127,6 @@ export const createStorage = ({ prefixKey = "", storage = localStorage } = {}) =
     return new Storage();
 };
 
-export const Storage = createStorage();
+export const Storage = createStorage({ prefixKey: "AD" });
 
 export default Storage;
