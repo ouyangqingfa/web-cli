@@ -22,12 +22,9 @@ const transform: AxiosTransform = {
             reject(res);
         }
         const { code, data, msg } = resData;
-        // 接口请求成功，直接返回结果
         if (code === ResultEnum.SUCCESS) {
             resolve(resData);
-        }
-        // 接口请求错误，统一提示错误信息
-        if (code === ResultEnum.ERROR) {
+        } else {
             if (msg) {
                 Message.error(msg);
                 reject(msg);
@@ -37,7 +34,6 @@ const transform: AxiosTransform = {
                 reject(msg);
             }
         }
-
         resolve(resData);
     },
 

@@ -1,0 +1,16 @@
+import { MenuModel } from "@/types/System";
+import { PageResult } from "@/utils/axios/types";
+
+export function getUserMenus(): Promise<PageResult<MenuModel>> {
+    return new Promise((resolve, reject) => {
+        let menus: MenuModel[] = [
+            { id: 0, mid: "test", key: "test", title: "测试", icon: "PlayCircleOutlined" },
+            { id: 1, mid: "t1", pid: "test", key: "test", title: "test", component: "views/test/Test" },
+            { id: 2, mid: "error", key: "error", title: "异常页面" },
+            { id: 3, mid: "e403", pid: "error", key: "403", title: "403", component: "views/system/error/403" },
+            { id: 4, mid: "e404", pid: "error", key: "404", title: "404", component: "views/system/error/404" },
+            { id: 5, mid: "e500", pid: "error", key: "500", title: "500", component: "views/system/error/500" },
+        ];
+        resolve({ code: 1, data: menus, msg: "", pageSize: 0, pageCount: 1, totalSize: menus.length, pageIndex: 1 });
+    });
+}

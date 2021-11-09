@@ -1,34 +1,72 @@
 //动态生成路由
-
-import router, { routes } from "@/router";
+import router, { routes, notFound } from "@/router";
 import allMenus from "./modules";
-import { Empty } from "ant-design-vue";
 import { RouteRecordRaw } from "vue-router";
 import { MenuModel } from "@/types/System";
 import store from "@/store";
 import { AsyncRouter } from "@/store/modules/AsyncRouter";
+import { RouterTransition } from "@/components/transition";
+
+function menuToRoute(item: MenuModel): RouteRecordRaw {
+    const component = item.component ? allMenus[item.component] : RouterTransition;
+    return {
+        path: `/${item.key}`,
+        component: component,
+        meta: {
+            title: item.title,
+            icon: item.icon,
+        },
+    };
+}
+
+function menuListToTree(menus: MenuModel[]): RouteRecordRaw[] {
+    let items: Array<MenuModel & { route: RouteRecordRaw }> = menus.map(m => {
+        return { ...m, route: menuToRoute(m) };
+    });
+    let childs: RouteRecordRaw[] = [];
+    const keyMap = items.reduce((acc: { [key: string]: number }, el, index) => {
+        acc[el.mid] = index;
+        return acc;
+    }, {});
+    let lated: RouteRecordRaw[] = [];
+    items.forEach(item => {
+        if (item.pid === null || item.pid === undefined || item.pid === -1) {
+            item.route.name = item.key;
+            childs.push(item.route);
+        } else {
+            const parent = items[keyMap[item.pid]];
+            if (parent) {
+                item.route.path = item.key; //`${parent.route.path}${item.route.path}`;
+                item.route.name = `${parent.route.name?.toString()}_${item.key}`; //防止name重复
+                if (parent.route.children) {
+                    parent.route.children.push(item.route);
+                } else {
+                    parent.route.children = [item.route];
+                }
+            } else {
+                console.error("not find parent router but pid is not null");
+                lated.push(item.route);
+            }
+        }
+    });
+    childs.push(...lated);
+    return childs;
+}
 
 export function generateRouters() {
     return new Promise((resolve, reject) => {
-        let menus: MenuModel[] = [{ name: "test", url: "/test/test", menuPath: "views/test/Test.vue" }];
-
-        const layout = routes.find(item => item.name == "layout")!;
-        if (layout) {
-            let childs: RouteRecordRaw[] = [];
-            menus.forEach(m => {
-                const component = allMenus[m.menuPath] || Empty;
-                childs.push({
-                    name: m.name,
-                    path: m.url,
-                    component: component,
-                });
-            });
-            layout.children = childs;
-            router.addRoute(layout);
-        }
-
         const routerStore = store.get<AsyncRouter>(AsyncRouter.SKEY);
-        routerStore.menus = menus;
-        resolve(menus);
+        routerStore
+            .getDynamicMenu()
+            .then(menus => {
+                const layout = routes.find(item => item.name == "layout")!;
+                layout.children = menuListToTree(menus);
+                router.addRoute(layout);
+                router.addRoute(notFound);
+                resolve(menus);
+            })
+            .catch(err => {
+                reject(err);
+            });
     });
 }

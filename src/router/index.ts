@@ -2,6 +2,13 @@ import { App } from "vue";
 import { createRouter, createWebHashHistory, RouteRecordRaw, createWebHistory } from "vue-router";
 import { createRouterGuards } from "./RouterGuards";
 
+export const notFound: RouteRecordRaw = {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    redirect: "/error/404",
+    component: () => import("@/views/system/error/404.vue"),
+};
+
 export const routes: Array<RouteRecordRaw> = [
     {
         path: "/error/403",

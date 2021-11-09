@@ -6,9 +6,10 @@
                 <div class="sider-logo-warp"></div>
             </div>
             <div class="sider-content">
-                <a-menu mode="inline" theme="dark" @click="onMenuItemClick">
+                <!-- <a-menu>
                     <a-menu-item key="1234" path="/test/test">111</a-menu-item>
-                </a-menu>
+                </a-menu> -->
+                <SiderMenu />
             </div>
         </a-layout-sider>
         <a-layout>
@@ -18,6 +19,7 @@
                         <MenuUnfoldOutlined v-if="collapsed" />
                         <MenuFoldOutlined v-else />
                     </div>
+                    {{ tsDate }}
                 </div>
                 <div class="header-extra">
                     <a-dropdown trigger="click">
@@ -47,11 +49,17 @@ import { ref } from "vue";
 import store from "@/store";
 import router from "@/router";
 import { UserStore } from "@/store/modules/User";
+import { AsyncRouter } from "@/store/modules/AsyncRouter";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from "@ant-design/icons-vue";
 import { Modal } from "ant-design-vue";
+import SiderMenu from "./siderMenu/index.vue";
+
+import Api from "@/api";
 
 const collapsed = ref(false);
 const userStore = store.get<UserStore>(UserStore.SKEY);
+const routerStore = store.get<AsyncRouter>(AsyncRouter.SKEY);
+const { menus } = routerStore;
 
 //退出登录
 function onLogoutClick() {
@@ -66,9 +74,12 @@ function onLogoutClick() {
     });
 }
 
-function onMenuItemClick(para: any) {
-    router.push(para.item.path);
-}
+const tsDate = ref("");
+setInterval(() => {
+    Api.getlastTime.do<string>().then(res => {
+        tsDate.value = res.data;
+    });
+}, 3000);
 </script>
 
 <style lang="less" scoped>
@@ -128,15 +139,14 @@ function onMenuItemClick(para: any) {
             cursor: pointer;
 
             .header-extra-user-icon {
-                width: 28px;
-                height: 28px;
-                border-radius: 14px;
+                width: 24px;
+                height: 24px;
+                border-radius: 12px;
                 display: inline-block;
-                // float: left;
                 background-color: #108ee9;
-                line-height: 28px;
+                line-height: 24px;
                 text-align: center;
-                font-size: 16px;
+                font-size: 14px;
                 color: #cccccc;
                 margin-right: 6px;
             }

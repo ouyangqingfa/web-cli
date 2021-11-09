@@ -5,14 +5,18 @@ import storage from "@/utils/Storage";
 import { StorageEnum } from "@/enums/AppEnum";
 import store from "@/store";
 import { AsyncRouter } from "@/store/modules/AsyncRouter";
-import { generateRouters } from "./dynamicRouter";
+import { generateRouters } from "./DynamicRouter";
 
 NProgress.configure({ showSpinner: false });
 
 function loadDynamicRouter(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
-    generateRouters().then(() => {
-        next({ ...to, replace: true });
-    });
+    generateRouters()
+        .then(() => {
+            next({ ...to, replace: true });
+        })
+        .catch(() => {
+            next({ path: "/error/404" });
+        });
 }
 
 /** 路由守卫,权限控制等 */
