@@ -8,6 +8,6 @@
 
 import { TestApi } from "./modules/test";
 export const Apis = {
-    ...TestApi,
+    test: TestApi,
 };
 export default Apis;

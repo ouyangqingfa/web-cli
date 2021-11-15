@@ -31,10 +31,9 @@
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { ref } from "vue";
 import store from "@/store";
-import { UserStore } from "@/store/modules/User";
 import router from "@/router";
 
-const userStore = store.get<UserStore>(UserStore.SKEY);
+const userStore = store.userStore;
 
 async function loginClick() {
     userStore.id = "ajsgdbjasbhdc";

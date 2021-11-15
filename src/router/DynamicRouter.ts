@@ -4,7 +4,6 @@ import allMenus from "./modules";
 import { RouteRecordRaw } from "vue-router";
 import { MenuModel } from "@/types/System";
 import store from "@/store";
-import { AsyncRouter } from "@/store/modules/AsyncRouter";
 import { RouterTransition } from "@/components/transition";
 
 function menuToRoute(item: MenuModel): RouteRecordRaw {
@@ -55,8 +54,8 @@ function menuListToTree(menus: MenuModel[]): RouteRecordRaw[] {
 
 export function generateRouters() {
     return new Promise((resolve, reject) => {
-        const routerStore = store.get<AsyncRouter>(AsyncRouter.SKEY);
-        routerStore
+        // const routerStore = store.get<AsyncRouter>(AsyncRouter.SKEY);
+        store.routerStore
             .getDynamicMenu()
             .then(menus => {
                 const layout = routes.find(item => item.name == "layout")!;

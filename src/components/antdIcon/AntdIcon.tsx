@@ -10,7 +10,7 @@ let AntdIcon = createFromIconfontCN({
 });
 
 export default defineComponent({
-    name: "IconFont",
+    name: "AntdIcon",
     props: {
         type: {
             type: String as PropType<string>,

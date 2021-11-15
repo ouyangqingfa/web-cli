@@ -98,7 +98,7 @@ export class VAxios {
     /**
      * @description:   请求方法
      */
-    request<T = any>(config: AxiosRequestConfig): Promise<Result<T>> {
+    request<T extends Result<any>>(config: AxiosRequestConfig): Promise<T> {
         const transform = this.getTransform();
         const { beforeRequestHook, requestCatch, transformRequestData } = transform || {};
         if (beforeRequestHook) {
@@ -106,8 +106,8 @@ export class VAxios {
         }
         return new Promise((resolve, reject) => {
             this.axiosInstance
-                .request<Result<T>>(config)
-                .then((res: AxiosResponse<Result<T>>) => {
+                .request<T>(config)
+                .then((res: AxiosResponse<T>) => {
                     const isCancel = axios.isCancel(res);
                     if (transformRequestData && !isCancel) {
                         transformRequestData<T>(res, resolve, reject);
@@ -125,11 +125,11 @@ export class VAxios {
         });
     }
 
-    get<T = any>(url: string, params?: any): Promise<Result<T>> {
+    get<T extends Result<any>>(url: string, params?: any): Promise<T> {
         return this.request({ url: url, method: RequestEnum.GET, params: params });
     }
 
-    post<T = any>(url: string, data: any, params?: any): Promise<Result<T>> {
+    post<T extends Result<any>>(url: string, data: any, params?: any): Promise<T> {
         return this.request({ url: url, method: RequestEnum.POST, data: data, params: params });
     }
 }

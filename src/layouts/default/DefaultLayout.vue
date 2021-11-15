@@ -6,10 +6,7 @@
                 <div class="sider-logo-warp"></div>
             </div>
             <div class="sider-content">
-                <!-- <a-menu>
-                    <a-menu-item key="1234" path="/test/test">111</a-menu-item>
-                </a-menu> -->
-                <SiderMenu />
+                <SiderMenu v-model:collapsed="collapsed" />
             </div>
         </a-layout-sider>
         <a-layout>
@@ -19,6 +16,24 @@
                         <MenuUnfoldOutlined v-if="collapsed" />
                         <MenuFoldOutlined v-else />
                     </div>
+                    <a-breadcrumb>
+                        <template v-for="(routeItem, rotueIndex) in $route.matched" :key="routeItem.name">
+                            <a-breadcrumb-item>
+                                <span>{{ routeItem.meta.title }}</span>
+                                <template v-if="routeItem.children.length" #overlay>
+                                    <a-menu :selectedKeys="[$route.matched[rotueIndex + 1]?.name]">
+                                        <template v-for="childItem in routeItem.children">
+                                            <a-menu-item v-if="!childItem.meta?.hidden" :key="childItem.name">
+                                                <router-link :to="{ name: childItem.name }" custom #="{ navigate }">
+                                                    <div @click="navigate">{{ childItem.meta?.title }}</div>
+                                                </router-link>
+                                            </a-menu-item>
+                                        </template>
+                                    </a-menu>
+                                </template>
+                            </a-breadcrumb-item>
+                        </template>
+                    </a-breadcrumb>
                     {{ tsDate }}
                 </div>
                 <div class="header-extra">
@@ -48,8 +63,6 @@
 import { ref } from "vue";
 import store from "@/store";
 import router from "@/router";
-import { UserStore } from "@/store/modules/User";
-import { AsyncRouter } from "@/store/modules/AsyncRouter";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from "@ant-design/icons-vue";
 import { Modal } from "ant-design-vue";
 import SiderMenu from "./siderMenu/index.vue";
@@ -57,9 +70,7 @@ import SiderMenu from "./siderMenu/index.vue";
 import Api from "@/api";
 
 const collapsed = ref(false);
-const userStore = store.get<UserStore>(UserStore.SKEY);
-const routerStore = store.get<AsyncRouter>(AsyncRouter.SKEY);
-const { menus } = routerStore;
+const userStore = store.userStore;
 
 //退出登录
 function onLogoutClick() {
@@ -76,7 +87,7 @@ function onLogoutClick() {
 
 const tsDate = ref("");
 setInterval(() => {
-    Api.getlastTime.do<string>().then(res => {
+    Api.test.getlastTime.do<string>().then(res => {
         tsDate.value = res.data;
     });
 }, 3000);
@@ -118,7 +129,8 @@ setInterval(() => {
         height: 100%;
 
         & > div {
-            display: inline;
+            display: inline-block;
+            margin-right: 12px;
         }
 
         .header-collapsed-menu {

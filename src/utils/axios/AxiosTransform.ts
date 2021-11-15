@@ -2,7 +2,7 @@
  * 数据处理类，可以根据项目自行配置
  */
 import type { AxiosRequestConfig, AxiosResponse } from "axios";
-import type { Result } from "./types";
+import { Result } from "./types";
 
 export abstract class AxiosTransform {
     /**
@@ -14,11 +14,7 @@ export abstract class AxiosTransform {
     /**
      * @description: 请求成功数据处理
      */
-    transformRequestData?: <T>(
-        res: AxiosResponse<Result<T>>,
-        resolve: (value: Result<T> | PromiseLike<Result<T>>) => void,
-        reject: (reason?: any) => void
-    ) => void;
+    transformRequestData?: <T extends Result<any>>(res: AxiosResponse<T>, resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void;
 
     /**
      * @description: 请求失败处理
@@ -33,7 +29,7 @@ export abstract class AxiosTransform {
     /**
      * @description: 请求之后的拦截器
      */
-    responseInterceptors?: <T>(res: AxiosResponse<T>) => AxiosResponse<T>;
+    responseInterceptors?: <T extends Result<any>>(res: AxiosResponse<T>) => AxiosResponse<T>;
 
     /**
      * @description: 请求之前的拦截器错误处理

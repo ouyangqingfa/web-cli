@@ -28,7 +28,7 @@
 import { PropType } from "vue";
 import { RouteRecordRaw } from "vue-router";
 import { MenuOutlined } from "@ant-design/icons-vue";
-import AntdIcon from "@/components/antdIcon";
+// import AntdIcon from "@/components/antdIcon";
 
 defineProps({
     menu: {

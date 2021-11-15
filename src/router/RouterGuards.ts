@@ -4,7 +4,6 @@ import "nprogress/nprogress.css";
 import storage from "@/utils/Storage";
 import { StorageEnum } from "@/enums/AppEnum";
 import store from "@/store";
-import { AsyncRouter } from "@/store/modules/AsyncRouter";
 import { generateRouters } from "./DynamicRouter";
 
 NProgress.configure({ showSpinner: false });
@@ -29,8 +28,8 @@ export function createRouterGuards(router: Router) {
             if (to.name === "login") {
                 next({ path: "/" });
             } else {
-                const routerStore = store.get<AsyncRouter>(AsyncRouter.SKEY);
-                if (routerStore.menus.length === 0) {
+                // const routerStore =  store.get<AsyncRouter>(AsyncRouter.SKEY);
+                if (store.routerStore.menus.length === 0) {
                     loadDynamicRouter(to, from, next);
                 } else {
                     next();

@@ -1,13 +1,12 @@
-// axios配置  可自行根据项目进行更改，只需更改该文件即可，其他文件可以不动
-
+// axios配置
 import { VAxios } from "./Axios";
 import { AxiosTransform } from "./AxiosTransform";
 import axios, { AxiosResponse } from "axios";
 import { checkStatus } from "./CheckStatus";
 import { Modal, message as Message } from "ant-design-vue";
 import { ResultEnum, ContentTypeEnum } from "@/enums/httpEnum";
-
 import { Result } from "./types";
+import store from "@/store";
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -16,12 +15,12 @@ const transform: AxiosTransform = {
     /**
      * @description: 处理请求数据
      */
-    transformRequestData: <T>(res: AxiosResponse<Result<T>>, resolve: (value: Result<T> | PromiseLike<Result<T>>) => void, reject: (reason?: any) => void) => {
+    transformRequestData: <T extends Result<any>>(res: AxiosResponse<T>, resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => {
         const resData = res.data;
         if (!resData) {
             reject(res);
         }
-        const { code, data, msg } = resData;
+        const { code, msg } = resData;
         if (code === ResultEnum.SUCCESS) {
             resolve(resData);
         } else {
@@ -46,20 +45,15 @@ const transform: AxiosTransform = {
      * @description: 请求拦截器处理
      */
     requestInterceptors: config => {
-        // // 请求之前处理config
-        // const token = store.state.user.token;
-        // if (token) {
-        //     if (config.headers) {
-        //         config.headers.token = token;
-        //     } else {
-        //         config.headers = { token: token };
-        //     }
-        // }
-        // if (config.method?.toLocaleUpperCase() !== RequestEnum.GET) {
-        //     if (config.headers?.["Content-Type"] == ContentTypeEnum.FORM_URLENCODED) {
-        //         config.data = qs.stringify(config.data, { arrayFormat: "brackets" });
-        //     }
-        // }
+        // 请求之前处理config
+        const token = store.userStore.token;
+        if (token) {
+            if (config.headers) {
+                config.headers.token = token;
+            } else {
+                config.headers = { token: token };
+            }
+        }
         return config;
     },
 
@@ -97,7 +91,7 @@ const transform: AxiosTransform = {
 };
 
 const Axios = new VAxios({
-    timeout: 15 * 1000,
+    timeout: 60 * 1000,
     headers: { "Content-Type": ContentTypeEnum.JSON },
     // 数据处理方式
     transform,

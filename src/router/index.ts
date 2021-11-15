@@ -37,6 +37,7 @@ export const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
         name: "layout",
+        meta: { title: "首页" },
         component: () => import("@/layouts/default/DefaultLayout.vue"),
     },
 ];
