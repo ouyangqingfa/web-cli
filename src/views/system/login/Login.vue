@@ -7,14 +7,14 @@
         </div>
         <a-form layout="horizontal">
             <a-form-item>
-                <a-input size="large" placeholder="用户名">
+                <a-input size="large" placeholder="用户名" v-model:value="loginState.uid">
                     <template #prefix>
                         <UserOutlined type="user" />
                     </template>
                 </a-input>
             </a-form-item>
             <a-form-item>
-                <a-input size="large" type="password" autocomplete="off" placeholder="密码">
+                <a-input size="large" type="password" autocomplete="off" placeholder="密码" v-model:value="loginState.pwd">
                     <template #prefix>
                         <LockOutlined type="user" />
                     </template>
@@ -32,18 +32,35 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { ref } from "vue";
 import store from "@/store";
 import router from "@/router";
+import Apis from "@/api";
+import { JSEncrypt } from "jsencrypt";
+import { message } from "ant-design-vue";
 
 const userStore = store.userStore;
+const loginState = ref({
+    uid: "admin",
+    pwd: "123456",
+});
 
-async function loginClick() {
-    userStore.id = "ajsgdbjasbhdc";
-    userStore.name = "UNAME";
-    userStore.password = "pwd_";
-    userStore.role = "admin";
-    userStore.token = "appToken";
-
-    userStore.login();
-    router.push("/");
+function loginClick() {
+    if (loginState.value.uid && loginState.value.pwd) {
+        Apis.system.rsa().then(res => {
+            const rsaPub = res.data;
+            let jsencrypt = new JSEncrypt();
+            jsencrypt.setPublicKey(rsaPub);
+            let encryptPwd = jsencrypt.encrypt(loginState.value.pwd);
+            if (encryptPwd) {
+                userStore.login(loginState.value.uid, encryptPwd).then(res => {
+                    if (res === true) {
+                        message.success("登录成功");
+                        router.push("/");
+                    }
+                });
+            } else {
+                console.error("pwd encrypt error");
+            }
+        });
+    }
 }
 </script>
 

@@ -1,13 +1,26 @@
 import { StorageEnum } from "@/enums/AppEnum";
 import storage from "@/utils/Storage";
+import Apis from "@/api";
 
 export class UserStore {
-    public token: string = "";
-    public id: string = "";
-    public name: string = "";
+    public id: number = -1;
+    public uid: string = "";
+    public uname: string = "";
+    public company: string = "";
+    public department: string = "";
+    public job: string = "";
+    public sno: string = "";
+    public idNum: string = "";
     public email: string = "";
-    public password: string = "";
-    public role: string = "";
+    public phone: string = "";
+    public avatar: string = "";
+    public sign: string = "";
+    public regDate: string = "";
+    public status: number = -1;
+    public creator: string = "";
+    public createTime: string = "";
+    public remark: string = "";
+    public token: string = "";
 
     constructor() {
         this.loadByStorage();
@@ -25,9 +38,24 @@ export class UserStore {
     /**
      * saveUserInfo
      */
-    public async login() {
-        storage.set(StorageEnum.USER_ACCESS, this);
-        storage.set(StorageEnum.ACCESS_TOKEN, this.token);
+    public login(uid: string, pwd: string): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            Apis.system
+                .login(uid, pwd)
+                .then(res => {
+                    if (res.data && res.data.token) {
+                        Object.assign(this, res.data);
+                        storage.set(StorageEnum.USER_ACCESS, this);
+                        storage.set(StorageEnum.ACCESS_TOKEN, res.data.token);
+                        resolve(true);
+                    } else {
+                        reject("登录失败");
+                    }
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
     }
 
     /**
@@ -36,9 +64,9 @@ export class UserStore {
     public logout() {
         storage.remove(StorageEnum.USER_ACCESS);
         storage.remove(StorageEnum.ACCESS_TOKEN);
-        this.token = "";
-        this.name = "";
-        this.role = "";
+        Object.keys(this).forEach(key => {
+            this[key] = undefined;
+        });
     }
 }
 

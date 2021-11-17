@@ -67,7 +67,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from "@ant-design/
 import { Modal } from "ant-design-vue";
 import SiderMenu from "./siderMenu/index.vue";
 
-import Api from "@/api";
+import Apis from "@/api";
 
 const collapsed = ref(false);
 const userStore = store.userStore;
@@ -86,11 +86,11 @@ function onLogoutClick() {
 }
 
 const tsDate = ref("");
-setInterval(() => {
-    Api.test.getlastTime.do<string>().then(res => {
-        tsDate.value = res.data;
-    });
-}, 3000);
+// setInterval(() => {
+//     Apis.test.getlastTime.do().then(res => {
+//         tsDate.value = res.data;
+//     });
+// }, 3000);
 </script>
 
 <style lang="less" scoped>

@@ -1,13 +1,23 @@
-// import { Api } from "@/types";
-// import Request from "@/utils/axios";
-// import { Result } from "@/utils/axios/types";
+import Request from "@/utils/axios";
+import { PageResult, Result } from "@/utils/axios/types";
 
-// export function http<T>(api: Api, params?: any, data?: any): Promise<Result<T>> {
-//     return Request.request({ url: api.url, method: api.method, params: params, data: data });
-// }
+export function get<T>(url: string, params?: any, data?: any): Promise<Result<T>> {
+    return Request.request<Result<T>>({ url: url, method: "GET", params: params, data: data });
+}
+export function getPage<T>(url: string, params?: any, data?: any): Promise<PageResult<T>> {
+    return Request.request<PageResult<T>>({ url: url, method: "GET", params: params, data: data });
+}
+export function post<T>(url: string, params?: any, data?: any): Promise<Result<T>> {
+    return Request.request<Result<T>>({ url: url, method: "POST", params: params, data: data });
+}
+export function postPage<T>(url: string, params?: any, data?: any): Promise<PageResult<T>> {
+    return Request.request<PageResult<T>>({ url: url, method: "POST", params: params, data: data });
+}
 
 import { TestApi } from "./modules/test";
+import { systemApi } from "./modules/System";
 export const Apis = {
+    system: systemApi,
     test: TestApi,
 };
 export default Apis;

@@ -18,8 +18,22 @@ export interface MenuModel {
 }
 //用户信息
 export interface UserModel {
+    id?: number;
+    uid: string;
+    uname: string;
+    company?: string;
+    department?: string;
+    job?: string;
+    sno?: string;
+    idNum?: string;
+    email?: string;
+    phone?: string;
+    avatar?: string;
+    sign?: string;
+    regDate?: string;
+    status?: number;
+    creator?: string;
+    createTime?: string;
+    remark?: string;
     token?: string;
-    id?: string;
-    name?: string;
-    // [key: string]: any;
 }

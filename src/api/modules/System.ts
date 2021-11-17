@@ -1,5 +1,6 @@
-import { MenuModel } from "@/types/System";
+import { MenuModel, UserModel } from "@/types/System";
 import { PageResult } from "@/utils/axios/types";
+import { get, post, getPage, postPage } from "../";
 
 export function getUserMenus(): Promise<PageResult<MenuModel>> {
     return new Promise((resolve, reject) => {
@@ -15,3 +16,9 @@ export function getUserMenus(): Promise<PageResult<MenuModel>> {
         resolve({ code: 1, data: menus, msg: "", pageSize: 0, pageCount: 1, totalSize: menus.length, pageIndex: 1 });
     });
 }
+
+export const systemApi = {
+    rsa: () => get<string>("/api/system/getRSAKey"),
+    login: (uid: string, pwd: string) => post<UserModel>("/api/system/login", { uid: uid }, pwd),
+};
+export default systemApi;

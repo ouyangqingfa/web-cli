@@ -49,9 +49,9 @@ const transform: AxiosTransform = {
         const token = store.userStore.token;
         if (token) {
             if (config.headers) {
-                config.headers.token = token;
+                config.headers.Authorization = token;
             } else {
-                config.headers = { token: token };
+                config.headers = { Authorization: token };
             }
         }
         return config;

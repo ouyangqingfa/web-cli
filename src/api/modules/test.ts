@@ -1,6 +1,6 @@
-import { Api } from "@/types";
+import { get, post, getPage, postPage } from "../";
 
 export const TestApi = {
-    getlastTime: new Api("/api/flight/getLastDataTime", "GET"),
+    hello: () => get<string>("/api/system/test/hello"),
 };
 export default TestApi;
