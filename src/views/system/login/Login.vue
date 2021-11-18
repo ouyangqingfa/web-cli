@@ -32,8 +32,6 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { ref } from "vue";
 import store from "@/store";
 import router from "@/router";
-import Apis from "@/api";
-import { JSEncrypt } from "jsencrypt";
 import { message } from "ant-design-vue";
 
 const userStore = store.userStore;
@@ -44,20 +42,10 @@ const loginState = ref({
 
 function loginClick() {
     if (loginState.value.uid && loginState.value.pwd) {
-        Apis.system.rsa().then(res => {
-            const rsaPub = res.data;
-            let jsencrypt = new JSEncrypt();
-            jsencrypt.setPublicKey(rsaPub);
-            let encryptPwd = jsencrypt.encrypt(loginState.value.pwd);
-            if (encryptPwd) {
-                userStore.login(loginState.value.uid, encryptPwd).then(res => {
-                    if (res === true) {
-                        message.success("登录成功");
-                        router.push("/");
-                    }
-                });
-            } else {
-                console.error("pwd encrypt error");
+        userStore.login(loginState.value.uid, loginState.value.pwd).then(res => {
+            if (res === true) {
+                message.success("登录成功");
+                router.push("/");
             }
         });
     }

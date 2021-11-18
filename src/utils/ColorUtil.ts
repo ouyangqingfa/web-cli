@@ -47,7 +47,7 @@ export function gradientColor(startColor: string, endColor: string, step: number
     let sG = (endG - startG) / step;
     let sB = (endB - startB) / step;
 
-    var colorArr = [];
+    var colorArr: string[] = [];
     for (var i = 0; i < step; i++) {
         //计算每一步的hex值
         var hex = rgbToHex("rgb(" + (sR * i + startR).toFixed(0) + "," + (sG * i + startG).toFixed(0) + "," + (sB * i + startB).toFixed(0) + ")");

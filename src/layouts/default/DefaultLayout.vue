@@ -42,7 +42,7 @@
                             <div class="header-extra-user-icon">
                                 <UserOutlined />
                             </div>
-                            <span>{{ userStore.name }}</span>
+                            <span>{{ userStore.uname }}</span>
                         </div>
                         <template #overlay>
                             <a-menu>
@@ -66,8 +66,6 @@ import router from "@/router";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from "@ant-design/icons-vue";
 import { Modal } from "ant-design-vue";
 import SiderMenu from "./siderMenu/index.vue";
-
-import Apis from "@/api";
 
 const collapsed = ref(false);
 const userStore = store.userStore;

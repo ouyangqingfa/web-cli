@@ -137,7 +137,7 @@ export function getZoomByDistance(distance: number): number {
  * @param coordinates
  */
 export function handleMapboxCoords(coordinates: number[][]): void {
-    var lstLonDiff = [];
+    var lstLonDiff: number[] = [];
     for (var i = 0; i < coordinates.length - 1; i++) {
         var detLon = coordinates[i + 1][0] - coordinates[i][0];
         //如果超过180度

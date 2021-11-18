@@ -20,5 +20,6 @@ export function getUserMenus(): Promise<PageResult<MenuModel>> {
 export const systemApi = {
     rsa: () => get<string>("/api/system/getRSAKey"),
     login: (uid: string, pwd: string) => post<UserModel>("/api/system/login", { uid: uid }, pwd),
+    logout: (uid: string) => post<boolean>("/api/system/logout", { uid: uid }),
 };
 export default systemApi;
