@@ -4,13 +4,14 @@ import "@/types/index";
 import router, { setupRouter } from "./router/index";
 
 import { setupStore } from "./store";
-import { setupAntd, setupExtMethods } from "./plugins";
+import { setupPlugins } from "./plugins";
+import { setupGlobalComponents } from "@/components/index";
 
 const app = createApp(App);
 
-setupExtMethods();
-setupAntd(app);
+setupPlugins(app);
 setupStore();
 setupRouter(app);
+setupGlobalComponents(app);
 
 router.isReady().then(() => app.mount("#app"));

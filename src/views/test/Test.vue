@@ -2,6 +2,8 @@
     <div>
         测试页面A
 
+        <div style="width: 20px; height: 20px"><svg-icon name="archive"></svg-icon></div>
+
         <div>
             <a-button type="primary" @click="onHelloBtnClick">hello</a-button>
             <div>
