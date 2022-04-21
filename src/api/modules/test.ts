@@ -1,6 +1,6 @@
 import { get, post, getPage, postPage } from "../";
 
 export const TestApi = {
-    hello: () => get<string>("/api/system/test/hello"),
+  hello: () => get<string>("/api/dev/hello"),
 };
 export default TestApi;
