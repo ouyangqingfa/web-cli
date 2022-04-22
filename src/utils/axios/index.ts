@@ -6,7 +6,9 @@ import { checkStatus } from "./CheckStatus";
 import { Modal, message as Message } from "ant-design-vue";
 import { ResultEnum, ContentTypeEnum } from "@/enums/httpEnum";
 import { Result } from "./types";
-import store from "@/store";
+import { useUserStoreWithOut } from "@/store/UserStore";
+
+const userStore = useUserStoreWithOut();
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -44,9 +46,9 @@ const transform: AxiosTransform = {
     /**
      * @description: 请求拦截器处理
      */
-    requestInterceptors: config => {
+    requestInterceptors: (config) => {
         // 请求之前处理config
-        const token = store.userStore.token;
+        const token = userStore.token;
         if (token) {
             if (config.headers) {
                 config.headers.Authorization = token;

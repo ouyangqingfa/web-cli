@@ -3,11 +3,14 @@ import router, { routes, notFound } from "@/router";
 import allMenus from "./modules";
 import { RouteRecordRaw } from "vue-router";
 import { MenuModel } from "@/types/System";
-import store from "@/store";
+import { useRouterStoreWithOut } from "@/store/RouterStore";
 import { RouterTransition } from "@/components/transition";
 
+const routerStore = useRouterStoreWithOut();
+
 function menuToRoute(item: MenuModel): RouteRecordRaw {
-    const component = item.component ? allMenus[item.component] : RouterTransition;
+    
+    const component = item.component ? allMenus.find((a) => a.key == item.component)?.component ?? RouterTransition : RouterTransition;
     return {
         path: `/${item.key}`,
         component: component,
@@ -19,7 +22,7 @@ function menuToRoute(item: MenuModel): RouteRecordRaw {
 }
 
 function menuListToTree(menus: MenuModel[]): RouteRecordRaw[] {
-    let items: Array<MenuModel & { route: RouteRecordRaw }> = menus.map(m => {
+    let items: Array<MenuModel & { route: RouteRecordRaw }> = menus.map((m) => {
         return { ...m, route: menuToRoute(m) };
     });
     let childs: RouteRecordRaw[] = [];
@@ -28,7 +31,7 @@ function menuListToTree(menus: MenuModel[]): RouteRecordRaw[] {
         return acc;
     }, {});
     let lated: RouteRecordRaw[] = [];
-    items.forEach(item => {
+    items.forEach((item) => {
         if (item.pid === null || item.pid === undefined || item.pid === -1) {
             item.route.name = item.key;
             childs.push(item.route);
@@ -54,17 +57,16 @@ function menuListToTree(menus: MenuModel[]): RouteRecordRaw[] {
 
 export function generateRouters() {
     return new Promise((resolve, reject) => {
-        // const routerStore = store.get<AsyncRouter>(AsyncRouter.SKEY);
-        store.routerStore
+        routerStore
             .getDynamicMenu()
-            .then(menus => {
-                const layout = routes.find(item => item.name == "layout")!;
+            .then((menus) => {
+                const layout = routes.find((item) => item.name == "layout")!;
                 layout.children = menuListToTree(menus);
                 router.addRoute(layout);
                 router.addRoute(notFound);
                 resolve(menus);
             })
-            .catch(err => {
+            .catch((err) => {
                 reject(err);
             });
     });

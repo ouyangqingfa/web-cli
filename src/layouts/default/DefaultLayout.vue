@@ -1,7 +1,8 @@
 <!-- 默认布局 -->
 <template>
     <a-layout>
-        <a-layout-sider v-model:collapsed="collapsed" collapsible :trigger="null" :collapsedWidth="64" class="layout-default-sider">
+        <a-layout-sider v-model:collapsed="collapsed" collapsible :trigger="null" :collapsedWidth="64"
+            class="layout-default-sider">
             <div class="sider-header">
                 <div class="sider-logo-warp"></div>
             </div>
@@ -61,14 +62,16 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import store from "@/store";
+import { useUserStore } from "@/store/UserStore";
 import router from "@/router";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from "@ant-design/icons-vue";
 import { Modal } from "ant-design-vue";
 import SiderMenu from "./siderMenu/index.vue";
 
 const collapsed = ref(false);
-const userStore = store.userStore;
+const userStore = useUserStore();
+
+userStore.loadByStorage()
 
 //退出登录
 function onLogoutClick() {
@@ -109,6 +112,7 @@ const tsDate = ref("");
             background-color: #aaaaaa;
         }
     }
+
     .sider-content {
         width: 100%;
         height: calc(100% - 64px);
@@ -126,7 +130,7 @@ const tsDate = ref("");
         flex: 1;
         height: 100%;
 
-        & > div {
+        &>div {
             display: inline-block;
             margin-right: 12px;
         }
@@ -135,11 +139,12 @@ const tsDate = ref("");
             cursor: pointer;
         }
     }
+
     .header-extra {
         height: 100%;
         width: auto;
 
-        & > div {
+        &>div {
             display: inline-block;
         }
 

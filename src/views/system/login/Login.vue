@@ -14,7 +14,8 @@
                 </a-input>
             </a-form-item>
             <a-form-item>
-                <a-input size="large" type="password" autocomplete="off" placeholder="密码" v-model:value="loginState.pwd">
+                <a-input size="large" type="password" autocomplete="off" placeholder="密码"
+                    v-model:value="loginState.pwd">
                     <template #prefix>
                         <LockOutlined type="user" />
                     </template>
@@ -30,11 +31,11 @@
 <script setup lang="ts">
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { ref } from "vue";
-import store from "@/store";
+import { useUserStore } from "@/store/UserStore";
 import router from "@/router";
 import { message } from "ant-design-vue";
 
-const userStore = store.userStore;
+const userStore = useUserStore()
 const loginState = ref({
     uid: "admin",
     pwd: "123456",
