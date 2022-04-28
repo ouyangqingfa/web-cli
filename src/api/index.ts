@@ -14,10 +14,13 @@ export function postPage<T>(url: string, params?: any, data?: any): Promise<Page
     return Request.request<PageResult<T>>({ url: url, method: "POST", params: params, data: data });
 }
 
-import { TestApi } from "./modules/test";
-import { systemApi } from "./modules/System";
+import TestApi from "./modules/test";
+import sysApi from "./modules/System";
+import userApi from "./modules/User";
+
 export const Apis = {
-    system: systemApi,
+    user: userApi,
+    system: sysApi,
     test: TestApi,
 };
 export default Apis;

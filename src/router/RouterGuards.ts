@@ -16,6 +16,9 @@ function loadDynamicRouter(to: RouteLocationNormalized, from: RouteLocationNorma
         })
         .catch(() => {
             next({ path: "/error/404" });
+        })
+        .finally(() => {
+            routerStore.routeLoaded = true;
         });
 }
 
@@ -29,7 +32,7 @@ export function createRouterGuards(router: Router) {
             if (to.name === "login") {
                 next({ path: "/" });
             } else {
-                if (routerStore.menus.length === 0) {
+                if (routerStore.routeLoaded == false) {
                     loadDynamicRouter(to, from, next);
                 } else {
                     next();

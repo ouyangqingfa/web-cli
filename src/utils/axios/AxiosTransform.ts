@@ -14,7 +14,7 @@ export abstract class AxiosTransform {
     /**
      * @description: 请求成功数据处理
      */
-    transformRequestData?: <T extends Result<any>>(res: AxiosResponse<T>, resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void;
+    transformResponseData?: <T extends Result<any>>(res: AxiosResponse<T>, resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void;
 
     /**
      * @description: 请求失败处理

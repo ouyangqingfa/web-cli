@@ -100,7 +100,7 @@ export class VAxios {
      */
     request<T extends Result<any>>(config: AxiosRequestConfig): Promise<T> {
         const transform = this.getTransform();
-        const { beforeRequestHook, requestCatch, transformRequestData } = transform || {};
+        const { beforeRequestHook, requestCatch, transformResponseData } = transform || {};
         if (beforeRequestHook) {
             config = beforeRequestHook(config);
         }
@@ -109,8 +109,8 @@ export class VAxios {
                 .request<T>(config)
                 .then((res: AxiosResponse<T>) => {
                     const isCancel = axios.isCancel(res);
-                    if (transformRequestData && !isCancel) {
-                        transformRequestData<T>(res, resolve, reject);
+                    if (transformResponseData && !isCancel) {
+                        transformResponseData<T>(res, resolve, reject);
                     } else {
                         resolve(res.data);
                     }

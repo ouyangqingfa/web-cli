@@ -1,2 +1,2 @@
-import AntdIcon from "./AntdIcon";
+import AntdIcon from "./AntdIcon.vue";
 export default AntdIcon;

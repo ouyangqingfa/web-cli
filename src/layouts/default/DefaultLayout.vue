@@ -1,13 +1,12 @@
 <!-- 默认布局 -->
 <template>
     <a-layout>
-        <a-layout-sider v-model:collapsed="collapsed" collapsible :trigger="null" :collapsedWidth="64"
-            class="layout-default-sider">
+        <a-layout-sider v-model:collapsed="collapsed" collapsible :trigger="null" :collapsedWidth="64" class="layout-default-sider">
             <div class="sider-header">
                 <div class="sider-logo-warp"></div>
             </div>
             <div class="sider-content">
-                <SiderMenu v-model:collapsed="collapsed" />
+                <SiderMenu />
             </div>
         </a-layout-sider>
         <a-layout>
@@ -71,7 +70,7 @@ import SiderMenu from "./siderMenu/index.vue";
 const collapsed = ref(false);
 const userStore = useUserStore();
 
-userStore.loadByStorage()
+userStore.loadByStorage();
 
 //退出登录
 function onLogoutClick() {
@@ -87,11 +86,6 @@ function onLogoutClick() {
 }
 
 const tsDate = ref("");
-// setInterval(() => {
-//     Apis.test.getlastTime.do().then(res => {
-//         tsDate.value = res.data;
-//     });
-// }, 3000);
 </script>
 
 <style lang="less" scoped>
@@ -130,7 +124,7 @@ const tsDate = ref("");
         flex: 1;
         height: 100%;
 
-        &>div {
+        & > div {
             display: inline-block;
             margin-right: 12px;
         }
@@ -144,7 +138,7 @@ const tsDate = ref("");
         height: 100%;
         width: auto;
 
-        &>div {
+        & > div {
             display: inline-block;
         }
 

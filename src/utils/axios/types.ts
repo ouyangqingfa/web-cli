@@ -23,6 +23,6 @@ export interface PageResult<T extends any> extends Result<Array<T>> {
     totalSize: number;
     pageSize: number;
     pageCount: number;
-    pageIndex: number;
+    pageIndex?: number;
     data: Array<T>;
 }

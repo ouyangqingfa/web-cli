@@ -14,6 +14,7 @@ export default defineConfig({
         fs: { strict: false },
         host: "0.0.0.0",
         port: 18000,
+        hmr: true,
         proxy: {
             "/api": {
                 target: "http://127.0.0.1:18777",
@@ -27,3 +28,4 @@ export default defineConfig({
         },
     },
 });
+

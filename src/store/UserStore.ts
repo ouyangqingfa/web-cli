@@ -5,6 +5,7 @@ import { JSEncrypt } from "jsencrypt";
 import router from "@/router";
 import { defineStore } from "pinia";
 import { store } from "@/plugins/Pinia";
+import { useRouterStore } from "./RouterStore";
 
 export const useUserStore = defineStore("userStore", {
     state: () => {
@@ -29,17 +30,34 @@ export const useUserStore = defineStore("userStore", {
             token: "",
         };
     },
-    getters: {},
+    getters: {
+        isAdmin(): boolean {
+            //TODO
+            return true;
+        },
+        isRoleAdmin(): boolean {
+            //TODO
+            return false;
+        },
+    },
     actions: {
+        setToken(token: string) {
+            this.token = token;
+            storage.set(StorageEnum.ACCESS_TOKEN, token);
+        },
         loadByStorage() {
             let cache = storage.get(StorageEnum.USER_ACCESS);
             if (cache) {
                 Object.assign(this.$state, cache);
             }
+            let storeToken = storage.get(StorageEnum.ACCESS_TOKEN);
+            if (storeToken) {
+                this.token = storeToken;
+            }
         },
         login(uid: string, pwd: string): Promise<boolean> {
             return new Promise<boolean>((resolve, reject) => {
-                Apis.system
+                Apis.user
                     .rsa()
                     .then((res) => {
                         const rsaPubKey = res.data;
@@ -47,13 +65,13 @@ export const useUserStore = defineStore("userStore", {
                         jsencrypt.setPublicKey(rsaPubKey);
                         let encryptPwd = jsencrypt.encrypt(pwd);
                         if (encryptPwd) {
-                            Apis.system
+                            Apis.user
                                 .login(uid, encryptPwd)
                                 .then((res) => {
                                     if (res.data && res.data.token) {
                                         Object.assign(this.$state, res.data);
                                         storage.set(StorageEnum.USER_ACCESS, this);
-                                        storage.set(StorageEnum.ACCESS_TOKEN, res.data.token);
+                                        this.setToken(res.data.token);
                                         resolve(true);
                                     } else {
                                         reject("登录失败");
@@ -74,12 +92,14 @@ export const useUserStore = defineStore("userStore", {
         },
         logout(): Promise<boolean> {
             return new Promise<boolean>((resolve, reject) => {
-                Apis.system
+                Apis.user
                     .logout(this.uid)
                     .then((res) => {
                         if (res.data) {
                             storage.remove(StorageEnum.USER_ACCESS);
                             storage.remove(StorageEnum.ACCESS_TOKEN);
+                            const routerStore = useRouterStore();
+                            routerStore.clearMenus();
                             Object.keys(this).forEach((key) => {
                                 this.$state[key] = undefined;
                             });
@@ -94,6 +114,8 @@ export const useUserStore = defineStore("userStore", {
         },
     },
 });
+
+export default useUserStore;
 
 export function useUserStoreWithOut() {
     return useUserStore(store);

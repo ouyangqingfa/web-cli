@@ -15,14 +15,18 @@ const userStore = useUserStoreWithOut();
  */
 const transform: AxiosTransform = {
     /**
-     * @description: 处理请求数据
+     * @description: 处理响应结果数据
      */
-    transformRequestData: <T extends Result<any>>(res: AxiosResponse<T>, resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => {
+    transformResponseData: <T extends Result<any>>(res: AxiosResponse<T>, resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => {
         const resData = res.data;
         if (!resData) {
             reject(res);
         }
         const { code, msg } = resData;
+        if (res.headers["Authorization"] != null) {
+            console.debug("reset user token");
+            userStore.setToken(res.headers["Authorization"]);
+        }
         if (code === ResultEnum.SUCCESS) {
             resolve(resData);
         } else {

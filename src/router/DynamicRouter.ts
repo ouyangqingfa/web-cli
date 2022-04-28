@@ -1,22 +1,22 @@
 //动态生成路由
 import router, { routes, notFound } from "@/router";
-import allMenus from "./modules";
+import allMenus, { ModuleItem } from "./RouterMenus";
 import { RouteRecordRaw } from "vue-router";
-import { MenuModel } from "@/types/System";
+import { MenuModel } from "@/api/types/System";
 import { useRouterStoreWithOut } from "@/store/RouterStore";
 import { RouterTransition } from "@/components/transition";
+import { useUserStore } from "./../store/UserStore";
 
 const routerStore = useRouterStoreWithOut();
 
 function menuToRoute(item: MenuModel): RouteRecordRaw {
-    
-    const component = item.component ? allMenus.find((a) => a.key == item.component)?.component ?? RouterTransition : RouterTransition;
+    const menuModel = allMenus.treeFind("children", (m) => m.key == item.key || m.path == item.key);
     return {
         path: `/${item.key}`,
-        component: component,
+        component: menuModel?.component ?? RouterTransition,
         meta: {
-            title: item.title,
-            icon: item.icon,
+            title: item.title ?? menuModel?.title,
+            icon: item.icon ?? menuModel?.icon,
         },
     };
 }
@@ -55,19 +55,63 @@ function menuListToTree(menus: MenuModel[]): RouteRecordRaw[] {
     return childs;
 }
 
+function buildAdminRoute(): RouteRecordRaw[] {
+    let menuRoutes: RouteRecordRaw[] = [];
+    allMenus.forEach((m) => {
+        menuRoutes.push(menuModelToRoute(m, ""));
+    });
+    return menuRoutes;
+}
+
+function menuModelToRoute(m: ModuleItem, parentPath: string): RouteRecordRaw {
+    let path: string = m.key.startsWith("/") ? m.key : parentPath + "/" + m.key;
+    let routeItem: RouteRecordRaw = {
+        name: m.path ?? path.replaceAll("/", "_"),
+        path: path,
+        component: m.component ?? RouterTransition,
+        meta: {
+            title: m.title ?? m.key,
+            icon: m.icon ?? "",
+        },
+    };
+    if (m.children) {
+        let childs: RouteRecordRaw[] = [];
+        m.children.forEach((c) => {
+            childs.push(menuModelToRoute(c, path));
+        });
+        routeItem.children = childs;
+    }
+
+    return routeItem;
+}
+
 export function generateRouters() {
     return new Promise((resolve, reject) => {
-        routerStore
-            .getDynamicMenu()
-            .then((menus) => {
-                const layout = routes.find((item) => item.name == "layout")!;
-                layout.children = menuListToTree(menus);
-                router.addRoute(layout);
-                router.addRoute(notFound);
-                resolve(menus);
-            })
-            .catch((err) => {
-                reject(err);
-            });
+        const layout = routes.find((item) => item.name == "layout")!;
+        const userStore = useUserStore();
+
+        if (userStore.isAdmin) {
+            //系统管理员
+            layout.children = buildAdminRoute();
+            router.addRoute(layout);
+            router.addRoute(notFound);
+            resolve(null);
+        } else if (userStore.isRoleAdmin) {
+            //角色管理员
+        } else {
+            //普通用户
+            routerStore
+                .getDynamicMenu()
+                .then((menus) => {
+                    layout.children = menuListToTree(menus);
+                    router.addRoute(layout);
+                    router.addRoute(notFound);
+                    resolve(menus);
+                })
+                .catch((err) => {
+                    console.error(err);
+                    reject(err);
+                });
+        }
     });
 }
