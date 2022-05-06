@@ -39,6 +39,8 @@ export interface UserModel {
     token?: string;
     updater?: string;
     updateTime?: string;
+    //角色ID
+    roles?: string[];
 }
 //机构信息
 export interface OrgModel {
@@ -51,5 +53,14 @@ export interface OrgModel {
     createTime?: string;
     updater?: string;
     updateTime?: string;
+    remarks?: string;
+}
+
+//系统角色
+export interface RoleModel {
+    id?: number;
+    roleId?: string;
+    name: string;
+    status?: number;
     remarks?: string;
 }

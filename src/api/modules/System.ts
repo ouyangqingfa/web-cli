@@ -1,4 +1,4 @@
-import { MenuModel, OrgModel, UserModel } from "@/api/types/System";
+import { MenuModel, OrgModel, RoleModel, UserModel } from "@/api/types/System";
 import { get, post, getPage, postPage } from "../";
 
 const org = {
@@ -8,7 +8,20 @@ const org = {
 };
 
 const sysApi = {
-    getUserList: () => postPage<UserModel>("/api/system/sysUser/selectAll"),
-    saveUser: (user: UserModel) => post<boolean>("/api/system/sysUser/save", undefined, user),
+    getUserList: (current: number, pageSize: number, parm: UserParams) =>
+        postPage<UserModel>("/api/system/sysUser/getUserPage", { current: current, pageSize: pageSize }, parm),
+    saveUser: (create: boolean, user: UserModel) => post<boolean>("/api/system/sysUser/save", { create: create }, user),
 };
-export default { ...org, ...sysApi };
+
+const roleApi = {
+    getRoleList: () => postPage<RoleModel>("/api/system/sysRoles/selectAll"),
+    saveRole: (role: RoleModel) => post<number>("/api/system/sysRoles/saveOrUpdate", undefined, role),
+    deleteRole: (id: number) => post<number>("/api/system/sysRoles/delete", { id: id }),
+};
+export default { ...org, ...sysApi, ...roleApi };
+
+export interface UserParams {
+    roleId?: string;
+    orgId?: string;
+    name?: string;
+}

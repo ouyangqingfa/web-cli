@@ -1,6 +1,6 @@
 <!-- AntdIcon -->
 <template>
-    <AntdIcon :type="iconType" :style="wrapStyle"></AntdIcon>
+    <AntdIcon :type="iconType" :style="wrapStyle" :spin="spin" class="antd-icon"></AntdIcon>
 </template>
 
 <script setup lang="ts">
@@ -30,6 +30,14 @@ const props = defineProps({
     },
     size: {
         type: [Number, String] as PropType<number | string>,
+    },
+    spin: {
+        type: Boolean,
+        default: false,
+    },
+    disabled: {
+        type: Boolean,
+        default: false,
     },
 });
 

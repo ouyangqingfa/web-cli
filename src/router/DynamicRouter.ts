@@ -1,6 +1,6 @@
 //动态生成路由
 import router, { routes, notFound } from "@/router";
-import allMenus, { ModuleItem } from "./RouterMenus";
+import allMenus, { ModuleItem } from "./modules";
 import { RouteRecordRaw } from "vue-router";
 import { MenuModel } from "@/api/types/System";
 import { useRouterStoreWithOut } from "@/store/RouterStore";

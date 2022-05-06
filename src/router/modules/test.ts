@@ -1,4 +1,4 @@
-import { ModuleItem } from "../RouterMenus";
+import { ModuleItem } from "./index";
 import { RouterTransition } from "@/components/transition";
 
 const testModules: ModuleItem[] = [

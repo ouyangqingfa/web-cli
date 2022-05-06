@@ -2,6 +2,7 @@ import { store } from "@/plugins/Pinia";
 import { defineStore } from "pinia";
 import { MenuModel } from "@/api/types/System";
 import apis from "@/api";
+import { routes } from "@/router";
 
 export const useRouterStore = defineStore("routerStore", {
     state: () => {
@@ -29,6 +30,9 @@ export const useRouterStore = defineStore("routerStore", {
         },
         clearMenus() {
             this.menus = [];
+            const layout = routes.find((item) => item.name == "layout")!;
+            layout.children?.clear();
+            this.routeLoaded = false;
         },
     },
 });

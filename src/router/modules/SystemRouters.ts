@@ -1,12 +1,10 @@
-import { ModuleItem } from "../RouterMenus";
-import { RouterTransition } from "@/components/transition";
+import { ModuleItem } from "./index";
 
 const systemMenus: ModuleItem[] = [
     {
         title: "系统管理",
         icon: "",
         key: "/system/manage",
-        component: RouterTransition,
         children: [
             {
                 key: "role",

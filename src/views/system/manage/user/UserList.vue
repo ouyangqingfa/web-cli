@@ -1,20 +1,24 @@
 <!-- 用户列表 -->
 <template>
-    <a-card :bordered="false" title="用户列表" class="userlist-container">
+    <a-card :bordered="false" title="用户列表" class="userlist-container" :bodyStyle="{ flex: 1, overflowY: 'auto' }">
         <template #extra>
             <div class="list-extra-warp">
+                <!-- <span>
+                    <div title="搜索" class="extra-search-warp"> -->
+                <icon type="search" />
+                <!-- </div>
+                </span> -->
                 <icon type="redo" @click="onRefreshClick" />
                 <icon type="plus" @click="onAddBtnClick" />
             </div>
         </template>
-        <a-list :grid="{ gutter: 16, column: 4 }" :data-source="userList">
+        <a-list :grid="{ gutter: 16, column: 4 }" :data-source="userList" :loading="loadingData" :pagination="pagination">
             <template #renderItem="{ item }">
                 <a-list-item>
-                    <!-- <a-card-grid style="width: 100%"> -->
-                    <a-card hoverable style="width: 100%">
+                    <a-card hoverable class="user-list-item-card">
                         <template #actions>
-                            <icon type="edit" />
-                            <icon type="delete" />
+                            <icon type="edit" @click="onEditBtnClick(item)" />
+                            <icon type="delete" @click="onDeleteBtnClick(item)" />
                         </template>
                         <a-card-meta>
                             <template #title> {{ item.uname }} </template>
@@ -25,11 +29,11 @@
                             </template>
                             <template #description>{{ item.uid }} </template>
                         </a-card-meta>
-                        <!-- <template #title>
-                                {{ item.uname }}
-                            </template> -->
+
+                        <div class="user-item-status" v-if="item.status != 1">
+                            <a-tag color="#666">已禁用</a-tag>
+                        </div>
                     </a-card>
-                    <!-- </a-card-grid> -->
                 </a-list-item>
             </template>
         </a-list>
@@ -83,9 +87,10 @@
                     <a-col :span="12">
                         <a-form-item label="机构" :label-col="{ span: 8 }" :wrapper-col="{ span: 15 }">
                             <a-tree-select
+                                multiple
                                 allow-clear
-                                show-search
                                 style="width: 100%"
+                                :show-checked-strategy="SHOW_ALL"
                                 v-model:value="editModel.department"
                                 :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
                                 placeholder="请选择机构"
@@ -95,7 +100,7 @@
                         </a-form-item>
                     </a-col>
                     <a-col :span="12">
-                        <a-form-item label="状态" name="email" :label-col="{ span: 5 }" :wrapper-col="{ span: 15 }">
+                        <a-form-item label="状态" name="status" :label-col="{ span: 5 }" :wrapper-col="{ span: 15 }">
                             <a-select style="width: 100%" :options="userStatusOptions" v-model:value="editModel.status"> </a-select>
                         </a-form-item>
                     </a-col>
@@ -103,8 +108,8 @@
 
                 <a-form-item label="角色">
                     <template v-for="role in allRoles">
-                        <a-checkable-tag :checked="userRoles.indexOf(role) > -1" @change="(checked) => handleRoleChange(role, checked)">
-                            {{ role }}
+                        <a-checkable-tag :checked="userRoles.exist((r) => r == role.roleId)" @change="(checked) => handleRoleChange(role, checked)">
+                            {{ role.name }}
                         </a-checkable-tag>
                     </template>
                 </a-form-item>
@@ -117,41 +122,84 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, PropType, ref, watch } from "vue";
+import { onActivated, onMounted, PropType, reactive, ref, watch } from "vue";
 import api from "@/api";
-import { UserModel, OrgModel } from "@/api/types/System";
+import { UserParams } from "@/api/modules/System";
+import { UserModel, OrgModel, RoleModel } from "@/api/types/System";
 import { OrgTreeItem } from "./types";
-import { FormInstance } from "ant-design-vue";
+import { FormInstance, message, Modal, TreeSelect } from "ant-design-vue";
 import type { SelectProps } from "ant-design-vue";
 import type { Rule } from "ant-design-vue/es/form";
+import { deepClone } from "@/utils/ObjectUtil";
+const SHOW_ALL = TreeSelect.SHOW_ALL;
 
 const props = defineProps({
     org: { type: Object as PropType<OrgModel> },
     orgTreeData: { type: Array as PropType<Array<OrgTreeItem>> },
 });
 
+onActivated(() => {
+    loadUserList();
+    loadRoleData();
+});
 onMounted(() => {
+    loadRoleData();
     loadUserList();
 });
 
 watch(
     () => props.org,
     () => {
+        userSearchParam.value.orgId = props.org?.orgId;
         loadUserList();
     }
 );
 
+const userSearchParam = ref<UserParams>({});
 const userList = ref<Array<UserModel>>([]);
 const userStatusOptions: SelectProps["options"] = [
-    { label: "正常", value: 0 },
+    { label: "正常", value: 1 },
     { label: "禁用", value: -1 },
 ];
-const allRoles = ref([]);
+const allRoles = ref<RoleModel[]>([]);
+const loadingData = ref(false);
+
+// 分页
+const pagination = reactive({
+    current: 1,
+    pageSize: 16,
+    total: 0,
+    onChange: (page: number) => {
+        pagination.current = page;
+        loadUserList();
+    },
+    showSizeChanger: true,
+    showTotal: (total: number) => {
+        return `共${total}条记录`;
+    },
+    onShowSizeChange: (current: number, size: number) => {
+        pagination.pageSize = size;
+        loadUserList();
+    },
+});
+
+function loadRoleData() {
+    api.system.getRoleList().then((res) => {
+        allRoles.value = res.data;
+    });
+}
 
 function loadUserList() {
-    api.system.getUserList().then((res) => {
-        userList.value = res.data;
-    });
+    loadingData.value = true;
+    api.system
+        .getUserList(1, 10, userSearchParam.value)
+        .then((res) => {
+            userList.value = res.data;
+            pagination.total = res.totalSize;
+        })
+        .finally(() => {
+            loadingData.value = false;
+        });
 }
 
 function onRefreshClick() {
@@ -159,9 +207,10 @@ function onRefreshClick() {
 }
 
 const showEditModal = ref(false);
+var isCreateNewUser = true;
 const editModel = ref<UserModel>({ uid: "", uname: "", status: 0 });
 const userEditForm = ref<FormInstance>();
-const userRoles = ref<string[]>([]);
+const userRoles = ref<Array<string | undefined>>([]);
 const rules: Record<string, Rule[]> = {
     uid: [{ required: true, trigger: "change", message: "请输入登录名" }],
     uname: [{ required: true, message: "请输入姓名" }],
@@ -177,26 +226,90 @@ const rules: Record<string, Rule[]> = {
 
 function onAddBtnClick() {
     showEditModal.value = true;
-    editModel.value = { uid: "", uname: "", status: 0 };
+    isCreateNewUser = true;
+    editModel.value = { uid: "", uname: "", status: 0, department: [] };
+    userRoles.value = [];
 }
 
 function onSaveEdit() {
     userEditForm.value?.validate().then(() => {
-        api.system.saveUser(editModel.value).then(() => {});
+        editModel.value.roles = [];
+        userRoles.value.forEach((role) => {
+            if (role) {
+                editModel.value.roles?.push(role);
+            }
+        });
+
+        api.system.saveUser(isCreateNewUser, editModel.value).then((res) => {
+            if (res.data === true) {
+                showEditModal.value = false;
+                loadUserList();
+            } else {
+                message.error("操作失败" + res.msg);
+            }
+        });
     });
 }
 
+function onEditBtnClick(user: UserModel) {
+    showEditModal.value = true;
+    isCreateNewUser = false;
+    editModel.value = deepClone(user);
+    editModel.value.department = editModel.value.department ?? [];
+    userRoles.value = user.roles ?? [];
+}
+
 //角色选择改变
-function handleRoleChange(role: any, chk: boolean) {}
+function handleRoleChange(role: RoleModel, chk: boolean) {
+    if (chk) {
+        userRoles.value.push(role.roleId);
+    } else {
+        userRoles.value.delete(role.roleId);
+    }
+}
+
+//删除用户
+function onDeleteBtnClick(user: UserModel) {
+    Modal.confirm({
+        title: "删除确认",
+        content: "确定删除该用户吗？",
+        onOk: () => {
+            let usInfo = deepClone(user);
+            usInfo.status = -1;
+            api.system.saveUser(false, usInfo).then((res) => {
+                if (res.data) {
+                    message.success("操作成功");
+                } else {
+                    message.error("操作失败" + res.msg);
+                }
+                loadUserList();
+            });
+        },
+    });
+}
 </script>
 
 <style lang="less" scoped>
 .userlist-container {
+    display: flex;
+    flex-direction: column;
+
     .list-extra-warp {
         & > span {
             &:not(:last-child) {
                 margin-right: 8px;
             }
+        }
+    }
+
+    .user-list-item-card {
+        width: 100%;
+        position: relative;
+
+        .user-item-status {
+            position: absolute;
+            top: 20px;
+            right: 0px;
         }
     }
 }

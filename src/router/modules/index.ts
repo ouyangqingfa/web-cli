@@ -7,9 +7,10 @@ export interface ModuleItem {
     path?: string;
     component?: RouteComponent | (() => Promise<RouteComponent>);
     children?: ModuleItem[];
+    meta?: object;
 }
 
-import test from "./modules/test";
-import systemMenus from "./modules/SystemRouters";
+import test from "./test";
+import systemMenus from "./SystemRouters";
 
 export default [...systemMenus, ...test];

@@ -44,12 +44,6 @@ declare global {
         //  * @param childKey
         //  * @param func
         //  */
-        // treeMap<U extends { [key: string]: any }, K extends keyof T>(
-        //   childKey: K,
-        //   transformFunc: (item: T) => U,
-        //   initFunc: () => U,
-        //   newChildKey?: string
-        // ): Array<U>;
         mapTree<U extends { [key: string]: any }, K extends keyof T, CK extends keyof U>(
             key: K,
             pKey: K,
@@ -158,34 +152,6 @@ if (!Array.prototype.findAll) {
         return temp;
     };
 }
-
-// if (!Array.prototype.treeMap) {
-//   Array.prototype.treeMap = function <T, U extends { [key: string]: any }, K extends keyof T>(
-//     childKey: K,
-//     transformFunc: (item: T) => U,
-//     initFunc: () => U,
-//     newChildKey?: string
-//   ): Array<U> {
-//     let results: U[] = [];
-//     for (let i = 0; i < this.length; i++) {
-//       let newRootTreeItem: U = initFunc();
-//       treeRecursion(this[i], childKey, newRootTreeItem, transformFunc, newChildKey);
-//       results.push(newRootTreeItem);
-//     }
-//     return results;
-//   };
-// }
-
-// function treeRecursion<T, U extends { [key: string]: any }, K extends keyof T>(
-//   item: T,
-//   childKey: K,
-//   parent: U,
-//   func: (a: T) => U,
-//   newChildKey?: string
-// ) {
-//   let newItem= func(item);
-//   parent[newChildKey] = newItem;
-// }
 
 if (!Array.prototype.mapTree) {
     Array.prototype.mapTree = function <T, U extends { [key: string]: any }, K extends keyof T, CK extends keyof U>(

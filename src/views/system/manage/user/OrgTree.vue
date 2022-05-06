@@ -1,26 +1,28 @@
 <!-- 机构 -->
 <template>
-    <a-card :bordered="false" title="机构信息" class="orgtree-container">
+    <a-card :bordered="false" title="机构信息" class="orgtree-container" :bodyStyle="{ flex: 1, padding: '2px', paddingTop: '8px', overflowY: 'auto' }">
         <template #extra>
             <div class="org-tree-extra-warp">
                 <icon type="redo" @click="refreshOrgTree" />
                 <icon type="plus" @click="onAddOrgClick" />
             </div>
         </template>
-        <a-tree :tree-data="treeData" show-icon block-node defaultExpandAll v-if="treeData.length > 0" @select="onTreeSelected">
-            <template #title="{ title, dataRef }">
-                <a-dropdown :trigger="['contextmenu']">
-                    <div style="width: 100%">{{ title }}</div>
-                    <template #overlay>
-                        <a-menu>
-                            <a-menu-item key="1" @click="onNewChildOrg(dataRef)">添加子项</a-menu-item>
-                            <a-menu-item key="2" @click="onEditOrg(dataRef)">编辑</a-menu-item>
-                            <a-menu-item key="3" @click="onDeleteOrg(dataRef)">删除</a-menu-item>
-                        </a-menu>
-                    </template>
-                </a-dropdown>
-            </template>
-        </a-tree>
+        <a-spin :spinning="loadingData">
+            <a-tree :tree-data="treeData" show-icon block-node defaultExpandAll v-if="treeData.length > 0" @select="onTreeSelected">
+                <template #title="{ title, dataRef }">
+                    <a-dropdown :trigger="['contextmenu']">
+                        <div style="width: 100%; height: 100%">{{ title }}</div>
+                        <template #overlay>
+                            <a-menu>
+                                <a-menu-item key="1" @click="onNewChildOrg(dataRef)">添加子项</a-menu-item>
+                                <a-menu-item key="2" @click="onEditOrg(dataRef)">编辑</a-menu-item>
+                                <a-menu-item key="3" @click="onDeleteOrg(dataRef)">删除</a-menu-item>
+                            </a-menu>
+                        </template>
+                    </a-dropdown>
+                </template>
+            </a-tree>
+        </a-spin>
         <a-modal v-model:visible="showEditModal" title="机构信息编辑" width="600px" :maskClosable="false" @cancel="showEditModal = false" @ok="onSaveEditOrg">
             <a-form ref="orgEditForm" :model="editOrgModel" :label-col="{ span: 5 }" :rules="rules" :wrapper-col="{ span: 15 }" autocomplete="off">
                 <a-form-item label="名称" name="name">
@@ -50,7 +52,7 @@
 import { computed, onMounted, ref } from "vue";
 import { OrgModel } from "@/api/types/System";
 import api from "@/api";
-import type { FormInstance } from "ant-design-vue";
+import { FormInstance } from "ant-design-vue";
 import type { Rule } from "ant-design-vue/es/form";
 import { message, Modal } from "ant-design-vue";
 import { deepClone } from "@/utils/ObjectUtil";
@@ -62,6 +64,7 @@ onMounted(() => {
     loadOrgData();
 });
 
+const loadingData = ref(false);
 const orgData = ref<Array<OrgModel>>([]);
 const treeData = computed(() => {
     let data = orgData.value.mapTree("orgId", "pid", (o): OrgTreeItem => ({ title: o.name, key: o.orgId!, value: o.orgId! }), "children");
@@ -70,9 +73,15 @@ const treeData = computed(() => {
 });
 
 function loadOrgData() {
-    api.system.getOrgData().then((res) => {
-        orgData.value = res.data;
-    });
+    loadingData.value = true;
+    api.system
+        .getOrgData()
+        .then((res) => {
+            orgData.value = res.data;
+        })
+        .finally(() => {
+            loadingData.value = false;
+        });
 }
 
 function refreshOrgTree() {
@@ -147,6 +156,9 @@ function onDeleteOrg(org: OrgTreeItem) {
 
 <style lang="less" scoped>
 .orgtree-container {
+    display: flex;
+    flex-direction: column;
+
     .org-tree-extra-warp {
         & > span {
             &:not(:last-child) {
