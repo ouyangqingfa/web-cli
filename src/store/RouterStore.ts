@@ -1,12 +1,12 @@
 import { store } from "@/plugins/Pinia";
 import { defineStore } from "pinia";
-import { MenuModel } from "@/api/types/System";
+import { RoleMenuModel } from "@/api/types/System";
 import apis from "@/api";
 import { routes } from "@/router";
 
 export const useRouterStore = defineStore("routerStore", {
     state: () => {
-        const userMenus: MenuModel[] = [];
+        const userMenus: RoleMenuModel[] = [];
         return {
             routeLoaded: false,
             menus: userMenus,
@@ -14,8 +14,8 @@ export const useRouterStore = defineStore("routerStore", {
     },
     getters: {},
     actions: {
-        getDynamicMenu(): Promise<MenuModel[]> {
-            return new Promise<MenuModel[]>((resolve, reject) => {
+        getDynamicMenu(): Promise<RoleMenuModel[]> {
+            return new Promise<RoleMenuModel[]>((resolve, reject) => {
                 apis.user
                     .getUserMenus()
                     .then((res) => {

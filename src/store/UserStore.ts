@@ -31,9 +31,12 @@ export const useUserStore = defineStore("userStore", {
         };
     },
     getters: {
+        userToken(): string {
+            return this.token?.length ?? 0 > 0 ? this.token : storage.get(StorageEnum.ACCESS_TOKEN);
+        },
         isAdmin(): boolean {
             //TODO
-            return true;
+            return this.uid == "admin";
         },
         isRoleAdmin(): boolean {
             //TODO

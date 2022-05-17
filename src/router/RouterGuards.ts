@@ -4,10 +4,12 @@ import "nprogress/nprogress.css";
 import storage from "@/utils/Storage";
 import { StorageEnum } from "@/enums/AppEnum";
 import { useRouterStoreWithOut } from "@/store/RouterStore";
+import { useUserStoreWithOut } from "@/store/UserStore";
 import { generateRouters } from "./DynamicRouter";
 
 NProgress.configure({ showSpinner: false });
 const routerStore = useRouterStoreWithOut();
+const userStore = useUserStoreWithOut();
 
 function loadDynamicRouter(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
     generateRouters()
@@ -24,6 +26,7 @@ function loadDynamicRouter(to: RouteLocationNormalized, from: RouteLocationNorma
 
 /** 路由守卫,权限控制等 */
 export function createRouterGuards(router: Router) {
+    userStore.loadByStorage();
     router.beforeEach((to, from, next) => {
         NProgress.start();
         const token = storage.get(StorageEnum.ACCESS_TOKEN);

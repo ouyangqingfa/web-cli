@@ -4,15 +4,15 @@ const systemMenus: ModuleItem[] = [
     {
         title: "系统管理",
         icon: "",
-        key: "/system/manage",
+        name: "/system/manage",
         children: [
             {
-                key: "role",
+                name: "role",
                 title: "角色管理",
                 component: () => import("@/views/system/manage/role/RoleManager.vue"),
             },
             {
-                key: "user",
+                name: "user",
                 title: "用户管理",
                 component: () => import("@/views/system/manage/user/UserManager.vue"),
             },

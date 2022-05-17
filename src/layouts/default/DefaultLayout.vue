@@ -70,8 +70,6 @@ import SiderMenu from "./siderMenu/index.vue";
 const collapsed = ref(false);
 const userStore = useUserStore();
 
-userStore.loadByStorage();
-
 //退出登录
 function onLogoutClick() {
     Modal.confirm({

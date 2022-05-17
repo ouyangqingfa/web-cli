@@ -57,7 +57,7 @@ declare global {
          */
         treeFind<K extends keyof T>(childKey: K, func: (p: T) => boolean): T | null;
 
-        treeCall<K extends keyof T>(childKey: K, func: (p: T) => void): void;
+        treeCall<K extends keyof T>(childKey: K, func: (item: T, p?: T) => void, parent?: T): void;
 
         contains(func: (p: T) => boolean): boolean;
 
@@ -204,12 +204,12 @@ if (!Array.prototype.treeFind) {
 }
 
 if (!Array.prototype.treeCall) {
-    Array.prototype.treeCall = function <T, K extends keyof T>(childKey: K, func: (p: T) => void): void {
+    Array.prototype.treeCall = function <T, K extends keyof T>(childKey: K, func: (item: T, p?: T) => void, parent?: T): void {
         for (let i = 0; i < this.length; i++) {
             const item = this[i];
-            func(item);
+            func(item, parent);
             if (item[childKey] && Array.isArray(item[childKey]) === true) {
-                item[childKey].treeCall(childKey, func);
+                item[childKey].treeCall(childKey, func, item);
             }
         }
     };

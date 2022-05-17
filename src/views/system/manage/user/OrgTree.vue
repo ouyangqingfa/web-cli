@@ -68,6 +68,9 @@ const loadingData = ref(false);
 const orgData = ref<Array<OrgModel>>([]);
 const treeData = computed(() => {
     let data = orgData.value.mapTree("orgId", "pid", (o): OrgTreeItem => ({ title: o.name, key: o.orgId!, value: o.orgId! }), "children");
+    data.treeCall("children", (item, parent) => {
+        item.path = [...(parent?.path ?? []), item.key];
+    });
     emits("orgDataChange", data);
     return data;
 });

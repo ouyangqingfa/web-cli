@@ -23,9 +23,9 @@ const transform: AxiosTransform = {
             reject(res);
         }
         const { code, msg } = resData;
-        if (res.headers["Authorization"] != null) {
+        if (res.headers["authorization"] != null) {
             console.debug("reset user token");
-            userStore.setToken(res.headers["Authorization"]);
+            userStore.setToken(res.headers["authorization"]);
         }
         if (code === ResultEnum.SUCCESS) {
             resolve(resData);
@@ -52,7 +52,7 @@ const transform: AxiosTransform = {
      */
     requestInterceptors: (config) => {
         // 请求之前处理config
-        const token = userStore.token;
+        const token = userStore.userToken;
         if (token) {
             if (config.headers) {
                 config.headers.Authorization = token;

@@ -23,7 +23,7 @@ export interface UserModel {
     uname: string;
     password?: string;
     company?: string;
-    department?: string[];
+    department?: string;
     job?: string;
     sno?: string;
     idNum?: string;
@@ -62,5 +62,17 @@ export interface RoleModel {
     roleId?: string;
     name: string;
     status?: number;
+    remarks?: string;
+}
+
+export interface RoleMenuModel {
+    id?: number;
+    roleId?: string;
+    menuId: string;
+    status?: number;
+    menuType?: number;
+    sort?: number;
+    creator?: string;
+    createTime?: string;
     remarks?: string;
 }

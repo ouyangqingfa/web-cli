@@ -2,9 +2,9 @@
 <template>
     <div class="rolemanager-container">
         <RoleList @selectRole="onRoleSelected" class="role-container" />
-        <a-tabs class="role-detail-container" size="large" :tabBarStyle="{ padding: '0 12px' }">
+        <a-tabs v-model:activeKey="activeKey" class="role-detail-container" size="large" :tabBarStyle="{ padding: '0 12px' }">
             <template #rightExtra>
-                <a-button type="primary">保存</a-button>
+                <a-button v-if="activeKey == '1' && selRole" type="primary" @click="onSaveRoleMenusClick">保存</a-button>
             </template>
             <a-tab-pane key="1">
                 <template #tab>
@@ -20,6 +20,7 @@
                             v-model:checkedKeys="selMenus"
                             :disabled="!selRole"
                             @select="onTreeItemSelect"
+                            @check="onTreeCheck"
                         >
                             <template #title="{ title, key }">
                                 {{ title ?? key }}
@@ -43,19 +44,44 @@ import { ref } from "vue";
 import RoleList from "./RoleList.vue";
 import UserList from "./UserList.vue";
 import allMenus from "@/router/modules/index";
-import { RoleModel } from "@/api/types/System";
+import { RoleModel, RoleMenuModel } from "@/api/types/System";
+import api from "@/api";
+import { message } from "ant-design-vue";
 
 const selRole = ref<RoleModel>();
 const loadingRoleMenus = ref(false);
 const selMenus = ref<string[]>([]);
+const activeKey = ref("1");
 
 function onRoleSelected(role: RoleModel) {
     selRole.value = role;
     selMenus.value = [];
-    loadingRoleMenus.value = true;
-    setTimeout(() => {
-        loadingRoleMenus.value = false;
-    }, 1000);
+    checkedMenus = [];
+    //
+    // setTimeout(() => {
+    //
+    // }, 1000);
+    loadRoleMenus();
+}
+
+function loadRoleMenus() {
+    if (selRole.value?.roleId) {
+        loadingRoleMenus.value = true;
+        api.system
+            .getRoleMenus(selRole.value.roleId)
+            .then((res) => {
+                // selMenus.value = res.data.map((a) => a.menuId!);
+                selMenus.value = [];
+                res.data.forEach((m) => {
+                    if (m.menuType == 1) {
+                        selMenus.value.push(m.menuId!);
+                    }
+                });
+            })
+            .finally(() => {
+                loadingRoleMenus.value = false;
+            });
+    }
 }
 
 function onTreeItemSelect(selectedKeys: string[], e: { selected: boolean; selectedNodes; node; event }) {
@@ -68,6 +94,32 @@ function onTreeItemSelect(selectedKeys: string[], e: { selected: boolean; select
         } else {
             selMenus.value.delete(nodeKey);
         }
+    }
+}
+
+var checkedMenus: RoleMenuModel[] = [];
+function onTreeCheck(checkedKeys: string[], e: { halfCheckedKeys: string[] }) {
+    // checkedMenus = [...(checkedKeys.map((a):RoleMenuModel=>{return {menuId:a}}), ...(e.halfCheckedKeys.map((a):RoleMenuModel=>({menuId:a})))];
+    checkedMenus = [];
+    checkedKeys.forEach((a) => {
+        checkedMenus.push({ menuId: a, menuType: 1 });
+    });
+    e.halfCheckedKeys.forEach((h) => {
+        checkedMenus.push({ menuId: h, menuType: 0 });
+    });
+}
+
+function onSaveRoleMenusClick() {
+    if (selRole.value?.roleId) {
+        api.system.saveRoleMenus(selRole.value.roleId, checkedMenus).then((res) => {
+            if (res.data) {
+                message.info("操作成功");
+            } else {
+                message.error("操作失败" + res.msg);
+            }
+        });
+    } else {
+        console.error("not selected role");
     }
 }
 </script>

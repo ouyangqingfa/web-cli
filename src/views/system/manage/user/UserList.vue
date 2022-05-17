@@ -87,7 +87,6 @@
                     <a-col :span="12">
                         <a-form-item label="机构" :label-col="{ span: 8 }" :wrapper-col="{ span: 15 }">
                             <a-tree-select
-                                multiple
                                 allow-clear
                                 style="width: 100%"
                                 :show-checked-strategy="SHOW_ALL"
@@ -208,7 +207,7 @@ function onRefreshClick() {
 
 const showEditModal = ref(false);
 var isCreateNewUser = true;
-const editModel = ref<UserModel>({ uid: "", uname: "", status: 0 });
+const editModel = ref<UserModel>({ uid: "", uname: "", status: 1 });
 const userEditForm = ref<FormInstance>();
 const userRoles = ref<Array<string | undefined>>([]);
 const rules: Record<string, Rule[]> = {
@@ -227,7 +226,10 @@ const rules: Record<string, Rule[]> = {
 function onAddBtnClick() {
     showEditModal.value = true;
     isCreateNewUser = true;
-    editModel.value = { uid: "", uname: "", status: 0, department: [] };
+    editModel.value = { uid: "", uname: "", status: 1 };
+    if (props.org?.orgId) {
+        editModel.value.department = props.org?.orgId;
+    }
     userRoles.value = [];
 }
 
@@ -255,7 +257,6 @@ function onEditBtnClick(user: UserModel) {
     showEditModal.value = true;
     isCreateNewUser = false;
     editModel.value = deepClone(user);
-    editModel.value.department = editModel.value.department ?? [];
     userRoles.value = user.roles ?? [];
 }
 

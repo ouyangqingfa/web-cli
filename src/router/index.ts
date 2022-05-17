@@ -40,6 +40,12 @@ export const routes: Array<RouteRecordRaw> = [
         meta: { title: "首页" },
         component: () => import("@/layouts/default/DefaultLayout.vue"),
     },
+    // {
+    //     path: "/",
+    //     name: "layout",
+    //     meta: { title: "首页" },
+    //     component: () => import("@/layouts/single/SingleLayout.vue"),
+    // },
 ];
 
 const router = createRouter({

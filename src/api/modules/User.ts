@@ -1,4 +1,4 @@
-import { MenuModel, UserModel } from "@/api/types/System";
+import { MenuModel, RoleMenuModel, UserModel } from "@/api/types/System";
 import { PageResult } from "@/utils/axios/types";
 import { get, post, getPage, postPage } from "..";
 
@@ -17,9 +17,9 @@ const mockUserMenus: Promise<PageResult<MenuModel>> = new Promise((resolve, reje
 
 const authApi = {
     rsa: () => get<string>("/api/system/getRSAKey"),
-    login: (uid: string, pwd: string) => post<UserModel>("/api/system/login", { uid: uid }, pwd),
+    login: (uid: string, pwd: string) => post<UserModel>("/api/system/login", { uid: uid }, { pwd }),
     logout: (uid: string) => post<boolean>("/api/system/logout", { uid: uid }),
-    getUserMenus: () => mockUserMenus,
+    getUserMenus: () => postPage<RoleMenuModel>("/api/system/sysUserMenus/userMenus"),
 };
 
 export default authApi;
